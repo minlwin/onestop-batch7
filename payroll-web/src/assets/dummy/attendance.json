@@ -1,0 +1,26 @@
+[
+  {
+    "name" : "Aung Aung",
+    "date" : "2024-02-10",
+    "checkIn" : "9:00",
+    "checkOut" : "16:00",
+    "status" : "Attend",
+    "Remark" : ""
+  },
+  {
+    "name" : "Thidar",
+    "date" : "2024-02-10",
+    "checkIn" : "9:30",
+    "checkOut" : "16:00",
+    "status" : "Late",
+    "Remark" : ""
+  },
+  {
+    "name" : "Nilar",
+    "date" : "2024-02-10",
+    "checkIn" : "",
+    "checkOut" : "",
+    "status" : "Absent",
+    "Remark" : ""
+  }
+]
