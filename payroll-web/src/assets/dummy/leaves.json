@@ -1,0 +1,13 @@
+[
+  {
+    "name" : "Aung Aung",
+    "category" : "Sick Leave",
+    "type" : "Paid Leave",
+    "dateFrom" : "2024-03-01",
+    "dateTo" : "2024-03-03",
+    "days" : "2",
+    "anualLeaves" : "10",
+    "totalLeaves" : "8",
+    "remain": "2"
+  }
+]

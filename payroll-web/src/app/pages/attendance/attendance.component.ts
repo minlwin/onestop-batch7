@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../widgets/card/card.component';
 import { AttendanceService } from '../../services/attendance.service';
-import { PaginationComponent } from '../../widgets/pagination/pagination.component';
 import { RouterLink } from '@angular/router';
+import { WidgetsModule } from '../../widgets/widgets.module';
 
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [CardComponent, PaginationComponent, RouterLink],
+  imports: [WidgetsModule, RouterLink],
   templateUrl: './attendance.component.html',
   styles: ``
 })

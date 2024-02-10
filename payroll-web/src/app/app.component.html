@@ -7,6 +7,14 @@
 
     <ul class="navbar-nav">
       <li class="nav-item">
+        <a [routerLink]="['/department']" routerLinkActive="active" class="nav-link">
+          <i class="bi-building"></i> Department
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
+      </li>
+      <li class="nav-item">
         <a [routerLink]="['/attendance']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-check"></i> Attendance</a>
       </li>
       <li class="nav-item">
@@ -15,14 +23,11 @@
       <li class="nav-item">
         <a [routerLink]="['/payroll']" routerLinkActive="active"  class="nav-link"><i class="bi-envelope"></i> Payroll</a>
       </li>
-      <li class="nav-item dropdown">
+  <li class="nav-item dropdown">
         <a routerLinkActive="router-link-active"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
           <i class="bi-database"></i> Master Data
         </a>
         <ul class="dropdown-menu">
-          <li>
-            <a [routerLink]="['/employee']" routerLinkActive="active" class="dropdown-item"><i class="bi-people"></i> Employee</a>
-          </li>
           <li>
             <a [routerLink]="['/position']" routerLinkActive="active" class="dropdown-item"><i class="bi-briefcase"></i> Position</a>
           </li>

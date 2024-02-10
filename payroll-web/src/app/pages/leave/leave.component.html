@@ -1,1 +1,104 @@
-<p>leave works!</p>
+<h3 class="d-flex justify-content-between">
+  <span>
+    <i class="bi-calendar-minus"></i> Leave Management
+  </span>
+  <div>
+    <!-- Create Button -->
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-plus-lg"></i> Create
+    </button>
+    <!-- Export Button -->
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-arrow-up-square"></i> Export
+    </button>
+  </div>
+</h3>
+
+<app-card>
+  <form action="#" class="row">
+    <!-- Category -->
+    <div class="col-auto">
+      <label class="form-label">Category</label>
+      <select class="form-select">
+        <option value="">All Categories</option>
+        @for (item of leaveCategories; track $index) {
+          <option [value]="item">{{item}}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Type -->
+    <div class="col-auto">
+      <label class="form-label">Type</label>
+      <select class="form-select">
+        <option value="">All Types</option>
+        @for (item of leaveTypes; track $index) {
+          <option [value]="item">{{item}}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Date From -->
+    <div class="col-auto">
+      <label class="form-label">Date From</label>
+      <input type="date" class="form-control">
+    </div>
+
+    <!-- Date To -->
+    <div class="col-auto">
+      <label class="form-label">Date To</label>
+      <input type="date" class="form-control">
+    </div>
+    <!-- Name -->
+    <div class="col-auto">
+      <label class="form-label">Name</label>
+      <input type="tel" placeholder="Search Name" class="form-control">
+    </div>
+
+    <div class="col btn-wrapper">
+      <!-- Search Button -->
+      <button class="btn btn-outline-primary me-2">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+</app-card>
+
+<table class="table table-bordered mt-2">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Leave Type</th>
+      <th>Date From</th>
+      <th>Date To</th>
+      <th class="text-end">Leave Days</th>
+      <th class="text-end">Annual Leaves</th>
+      <th class="text-end">Total Leave</th>
+      <th class="text-end">Remain</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of list; track $index) {
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.dateFrom}}</td>
+        <td>{{item.dateTo}}</td>
+        <td class="text-end">{{item.days}}</td>
+        <td class="text-end">{{item.anualLeaves}}</td>
+        <td class="text-end">{{item.totalLeaves}}</td>
+        <td class="text-end">{{item.remain}}</td>
+        <td class="text-center">
+          <a href="#" class="icon-link">
+            <i class="bi-send"></i>
+          </a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<app-pagination></app-pagination>
