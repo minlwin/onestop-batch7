@@ -7,11 +7,6 @@
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a [routerLink]="['/department']" routerLinkActive="active" class="nav-link">
-          <i class="bi-building"></i> Department
-        </a>
-      </li>
-      <li class="nav-item">
         <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
       </li>
       <li class="nav-item">
@@ -29,6 +24,11 @@
         </a>
         <ul class="dropdown-menu">
           <li>
+            <a [routerLink]="['/department']" routerLinkActive="active" class="dropdown-item">
+              <i class="bi-building"></i> Department
+            </a>
+          </li>
+              <li>
             <a [routerLink]="['/position']" routerLinkActive="active" class="dropdown-item"><i class="bi-briefcase"></i> Position</a>
           </li>
           <li>
