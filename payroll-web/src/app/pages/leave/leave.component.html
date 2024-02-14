@@ -18,24 +18,26 @@
   <form action="#" class="row">
     <!-- Category -->
     <div class="col-auto">
-      <label class="form-label">Category</label>
-      <select class="form-select">
-        <option value="">All Categories</option>
-        @for (item of leaveCategories; track $index) {
-          <option [value]="item">{{item}}</option>
-        }
-      </select>
+      <app-form-group label="Category">
+        <select class="form-select">
+          <option value="">All Categories</option>
+          @for (item of leaveCategories; track $index) {
+            <option [value]="item">{{item}}</option>
+          }
+        </select>
+      </app-form-group>
     </div>
 
     <!-- Type -->
     <div class="col-auto">
-      <label class="form-label">Type</label>
-      <select class="form-select">
-        <option value="">All Types</option>
-        @for (item of leaveTypes; track $index) {
-          <option [value]="item">{{item}}</option>
-        }
-      </select>
+      <app-form-group label="Leave Type">
+        <select class="form-select">
+          <option value="">All Types</option>
+          @for (item of leaveTypes; track $index) {
+            <option [value]="item">{{item}}</option>
+          }
+        </select>
+      </app-form-group>
     </div>
 
     <!-- Date From -->
@@ -49,6 +51,7 @@
       <label class="form-label">Date To</label>
       <input type="date" class="form-control">
     </div>
+
     <!-- Name -->
     <div class="col-auto">
       <label class="form-label">Name</label>

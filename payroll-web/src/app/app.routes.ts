@@ -21,6 +21,8 @@ import { HolidayEditComponent } from './pages/holiday-edit/holiday-edit.componen
 import { DepartmentComponent } from './pages/department/department.component';
 import { DepartmentEditComponent } from './pages/department-edit/department-edit.component';
 import { DepartmentDetailsComponent } from './pages/department-details/department-details.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { SettingsEditComponent } from './pages/settings-edit/settings-edit.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -71,6 +73,11 @@ export const routes: Routes = [
     {path: 'list', component: HolidayComponent},
     {path: 'edit', component: HolidayEditComponent},
     {path: '', redirectTo: '/holiday/list', pathMatch: 'full'}
+  ]},
+  {path: 'settings', children: [
+    {path: 'details', component: SettingsComponent},
+    {path: 'edit', component: SettingsEditComponent},
+    {path: '', redirectTo: '/settings/details', pathMatch: 'full'}
   ]},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

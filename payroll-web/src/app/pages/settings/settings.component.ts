@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { WidgetsModule } from '../../widgets/widgets.module';
 
 @Component({
-  selector: 'app-holiday',
+  selector: 'app-settings',
   standalone: true,
   imports: [WidgetsModule],
-  templateUrl: './holiday.component.html',
+  templateUrl: './settings.component.html',
   styles: ``
 })
-export class HolidayComponent {
+export class SettingsComponent {
 
 }

@@ -14,30 +14,34 @@
   <form action="#" class="row">
     <!-- Status -->
     <div class="col-auto">
-      <label class="form-label">Status</label>
-      <select class="form-select">
-        <option value="">All Status</option>
-        @for (item of statusList; track $index) {
-          <option [value]="item">{{item}}</option>
-        }
-      </select>
+      <app-form-group label="Status">
+        <select class="form-select">
+          <option value="">All Status</option>
+          @for (item of statusList; track $index) {
+            <option [value]="item">{{item}}</option>
+          }
+        </select>
+      </app-form-group>
     </div>
 
     <!-- Date From -->
     <div class="col-auto">
-      <label class="form-label">Date From</label>
-      <input type="date" class="form-control">
+      <app-form-group label="Date From">
+        <input type="date" class="form-control">
+      </app-form-group>
     </div>
 
     <!-- Date To -->
     <div class="col-auto">
-      <label class="form-label">Date To</label>
-      <input type="date" class="form-control">
+      <app-form-group label="Date To">
+        <input type="date" class="form-control">
+      </app-form-group>
     </div>
     <!-- Name -->
     <div class="col-auto">
-      <label class="form-label">Name</label>
-      <input type="tel" placeholder="Search Name" class="form-control">
+      <app-form-group label="Name">
+        <input type="tel" placeholder="Search Name" class="form-control">
+      </app-form-group>
     </div>
 
     <div class="col btn-wrapper">
