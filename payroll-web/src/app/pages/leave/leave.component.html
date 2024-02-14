@@ -1,8 +1,6 @@
-<h3 class="d-flex justify-content-between">
-  <span>
-    <i class="bi-calendar-minus"></i> Leave Management
-  </span>
-  <div>
+<app-list-view icon="bi-calendar-minus" title="Leave Management">
+
+  <div controlsBtns>
     <!-- Create Button -->
     <button class="btn btn-outline-primary ms-2">
       <i class="bi-plus-lg"></i> Create
@@ -12,10 +10,8 @@
       <i class="bi-arrow-up-square"></i> Export
     </button>
   </div>
-</h3>
 
-<app-card>
-  <form action="#" class="row">
+  <form searchForm action="#" class="row">
     <!-- Category -->
     <div class="col-auto">
       <app-form-group label="Category">
@@ -65,43 +61,41 @@
       </button>
     </div>
   </form>
-</app-card>
 
-<table class="table table-bordered mt-2">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Leave Type</th>
-      <th>Date From</th>
-      <th>Date To</th>
-      <th class="text-end">Leave Days</th>
-      <th class="text-end">Annual Leaves</th>
-      <th class="text-end">Total Leave</th>
-      <th class="text-end">Remain</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (item of list; track $index) {
+  <table resultList class="table table-bordered">
+    <thead>
       <tr>
-        <td>{{item.name}}</td>
-        <td>{{item.category}}</td>
-        <td>{{item.type}}</td>
-        <td>{{item.dateFrom}}</td>
-        <td>{{item.dateTo}}</td>
-        <td class="text-end">{{item.days}}</td>
-        <td class="text-end">{{item.anualLeaves}}</td>
-        <td class="text-end">{{item.totalLeaves}}</td>
-        <td class="text-end">{{item.remain}}</td>
-        <td class="text-center">
-          <a href="#" class="icon-link">
-            <i class="bi-send"></i>
-          </a>
-        </td>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Leave Type</th>
+        <th>Date From</th>
+        <th>Date To</th>
+        <th class="text-end">Leave Days</th>
+        <th class="text-end">Annual Leaves</th>
+        <th class="text-end">Total Leave</th>
+        <th class="text-end">Remain</th>
+        <th></th>
       </tr>
-    }
-  </tbody>
-</table>
-
-<app-pagination></app-pagination>
+    </thead>
+    <tbody>
+      @for (item of list; track $index) {
+        <tr>
+          <td>{{item.name}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.dateFrom}}</td>
+          <td>{{item.dateTo}}</td>
+          <td class="text-end">{{item.days}}</td>
+          <td class="text-end">{{item.anualLeaves}}</td>
+          <td class="text-end">{{item.totalLeaves}}</td>
+          <td class="text-end">{{item.remain}}</td>
+          <td class="text-center">
+            <a href="#" class="icon-link">
+              <i class="bi-send"></i>
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</app-list-view>

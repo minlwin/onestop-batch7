@@ -1,7 +1,6 @@
-<!-- Title -->
-<h3 class="d-flex justify-content-between">
-  <span><i class="bi-calendar-heart"></i> Holiday Management</span>
-  <div>
+<app-list-view icon="bi-calendar-heart" title="Holiday Management">
+
+  <div controlsBtns>
     <!-- Export Button -->
     <a class="btn btn-outline-primary">
       <i class="bi-plus-lg"></i> Create
@@ -13,4 +12,50 @@
       <i class="bi-arrow-up-square"></i> Export
     </button>
   </div>
-</h3>
+
+  <form searchForm action="#" class="row">
+    <div class="col-auto">
+      <app-form-group label="Type">
+        <select class="form-select">
+          <option value="">All Type</option>
+          @for (item of types; track $index) {
+            <option [value]="item">{{item}}</option>
+          }
+        </select>
+      </app-form-group>
+    </div>
+
+    <div class="col-auto">
+      <app-form-group label="Date From">
+        <input type="date" class="form-control">
+      </app-form-group>
+    </div>
+
+    <div class="col-auto">
+      <app-form-group label="Date To">
+        <input type="date" class="form-control">
+      </app-form-group>
+    </div>
+
+    <div class="col btn-wrapper">
+      <button class="btn btn-outline-primary">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <table resultList class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Holiday</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+
+</app-list-view>
+
+

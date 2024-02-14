@@ -1,7 +1,6 @@
-<!-- Title -->
-<h3 class="d-flex justify-content-between">
-  <span><i class="bi-envelope"></i> Payroll Management</span>
-  <div>
+<app-list-view icon="bi-envelope" title="Payroll Management">
+
+  <div controlsBtns>
     <!-- Export Button -->
     <a class="btn btn-outline-primary">
       <i class="bi-calculator"></i> Simulate
@@ -10,11 +9,8 @@
       <i class="bi-arrow-up-square"></i> Export
     </button>
   </div>
-</h3>
 
-<!-- Search Box -->
-<app-card>
-  <form action="#" class="row">
+  <form searchForm action="#" class="row">
     <!-- Date From -->
     <div class="col-auto">
       <app-form-group label="Pay Date From">
@@ -48,26 +44,24 @@
       </button>
     </div>
   </form>
-</app-card>
 
-<!-- Result Table -->
-<table class="table table-bordered mt-2">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Department</th>
-      <th>Position</th>
-      <th>Cut Off Date</th>
-      <th>Pay Date</th>
-      <th class="text-end">Basic Salary</th>
-      <th class="text-end">Allowance</th>
-      <th class="text-end">Deduction</th>
-      <th class="text-end">Tax</th>
-      <th class="text-end">Net Salary</th>
-    </tr>
-  </thead>
-</table>
+  <table resultList class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Position</th>
+        <th>Cut Off Date</th>
+        <th>Pay Date</th>
+        <th class="text-end">Basic Salary</th>
+        <th class="text-end">Allowance</th>
+        <th class="text-end">Deduction</th>
+        <th class="text-end">Tax</th>
+        <th class="text-end">Net Salary</th>
+      </tr>
+    </thead>
+  </table>
 
-<!-- Pagination -->
-<app-pagination></app-pagination>
+</app-list-view>
+

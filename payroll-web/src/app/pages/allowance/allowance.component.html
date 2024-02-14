@@ -1,7 +1,6 @@
-<!-- Title -->
-<h3 class="d-flex justify-content-between">
-  <span><i class="bi-envelope-open-heart"></i> Allowance Management</span>
-  <div>
+<app-list-view icon="bi-envelope-open-heart" title="Allowance Management">
+
+  <div controlsBtns>
     <!-- Export Button -->
     <a class="btn btn-outline-primary">
       <i class="bi-plus-lg"></i> Create
@@ -13,12 +12,36 @@
       <i class="bi-arrow-up-square"></i> Export
     </button>
   </div>
-</h3>
 
-<app-card>
+  <form searchForm action="#" class="row">
+    <div class="col-auto">
+      <app-form-group label="Code">
+        <input type="text" placeholder="Search Code" class="form-control">
+      </app-form-group>
+    </div>
+    <div class="col-auto">
+      <app-form-group label="Name">
+        <input type="text" placeholder="Search Name" class="form-control">
+      </app-form-group>
+    </div>
+    <div class="col btn-wrapper">
+      <button class="btn btn-outline-primary">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
 
-</app-card>
+  <table resultList class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th class="text-end">Allowance</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
 
-<table class="table table-bordered">
+</app-list-view>
 
-</table>

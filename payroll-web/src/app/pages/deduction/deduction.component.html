@@ -1,7 +1,5 @@
-<!-- Title -->
-<h3 class="d-flex justify-content-between">
-  <span><i class="bi-envelope-exclamation"></i> Deduction Management</span>
-  <div>
+<app-list-view icon="bi-envelope-exclamation" title="Deduction Management">
+  <div controlsBtns>
     <!-- Export Button -->
     <a class="btn btn-outline-primary">
       <i class="bi-plus-lg"></i> Create
@@ -13,4 +11,34 @@
       <i class="bi-arrow-up-square"></i> Export
     </button>
   </div>
-</h3>
+
+  <form searchForm action="#" class="row">
+    <div class="col-auto">
+      <app-form-group label="Code">
+        <input type="text" placeholder="Search Code" class="form-control">
+      </app-form-group>
+    </div>
+    <div class="col-auto">
+      <app-form-group label="Name">
+        <input type="text" placeholder="Search Name" class="form-control">
+      </app-form-group>
+    </div>
+    <div class="col btn-wrapper">
+      <button class="btn btn-outline-primary">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <table resultList class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Deduction</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+  </table>
+</app-list-view>
+

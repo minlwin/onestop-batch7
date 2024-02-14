@@ -4,6 +4,7 @@ import { CardComponent } from './card/card.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { ListViewComponent } from './list-view/list-view.component';
+import { PageTitleComponent } from './page-title/page-title.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListViewComponent } from './list-view/list-view.component';
     CardComponent,
     PaginationComponent,
     FormGroupComponent,
-    ListViewComponent
+    ListViewComponent,
+    PageTitleComponent
   ],
   imports: [
     CommonModule
@@ -20,7 +22,8 @@ import { ListViewComponent } from './list-view/list-view.component';
     CardComponent,
     PaginationComponent,
     FormGroupComponent,
-    ListViewComponent
+    ListViewComponent,
+    PageTitleComponent
   ]
 })
 export class WidgetsModule { }

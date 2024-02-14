@@ -10,4 +10,5 @@ import { WidgetsModule } from '../../widgets/widgets.module';
 })
 export class HolidayComponent {
 
+  types = ['Weekends', 'Gazetted Holiday', 'Special Holiday']
 }

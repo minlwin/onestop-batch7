@@ -1,10 +1,9 @@
 <!-- Title -->
-<h3 class="d-flex justify-content-between">
-  <span><i [class]="icon"></i> {{title}}</span>
+<app-page-title [icon]="icon" [title]="title">
   <div>
     <ng-content select="[controlsBtns]"></ng-content>
   </div>
-</h3>
+</app-page-title>
 
 <!-- Search Box -->
 <app-card>
