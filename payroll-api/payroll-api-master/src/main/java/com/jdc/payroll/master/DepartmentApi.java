@@ -3,6 +3,7 @@ package com.jdc.payroll.master;
 import java.util.List;
 
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,14 +30,17 @@ public class DepartmentApi {
 	}
 	
 	@PostMapping
-	ApiResponse<DataModificationResult<String>> create(@RequestBody DepartmentFormForCreate form, 
+	ApiResponse<DataModificationResult<String>> create(
+			@Validated @RequestBody DepartmentFormForCreate form, 
 			BindingResult result) {
 		return ApiResponse.success(null);
 	}
 	
 	@PutMapping("{code}")
-	ApiResponse<DataModificationResult<String>> update(@PathVariable String code, 
-			@RequestBody DepartmentFormForUpdate form, BindingResult result) {
+	ApiResponse<DataModificationResult<String>> update(
+			@PathVariable String code, 
+			@Validated @RequestBody DepartmentFormForUpdate form, 
+			BindingResult result) {
 		return ApiResponse.success(null);
 	}
 	
