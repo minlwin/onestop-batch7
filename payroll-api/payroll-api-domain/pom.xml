@@ -8,12 +8,17 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>payroll-api-domain</artifactId>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 	</dependencies>
 </project>
