@@ -46,6 +46,11 @@
 				<artifactId>payroll-api-transaction</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.jdc.payroll</groupId>
+				<artifactId>payroll-api-utils</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
@@ -54,6 +59,7 @@
 		<module>payroll-api-domain</module>
 		<module>payroll-api-master</module>
 		<module>payroll-api-transaction</module>
+		<module>payroll-api-utils</module>
 	</modules>
 	
 	<build>

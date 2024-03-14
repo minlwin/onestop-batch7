@@ -43,6 +43,11 @@
 			<artifactId>payroll-api-transaction</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.jdc.payroll</groupId>
+			<artifactId>payroll-api-utils</artifactId>
+		</dependency>
+
 	</dependencies>
 	
 	<build>

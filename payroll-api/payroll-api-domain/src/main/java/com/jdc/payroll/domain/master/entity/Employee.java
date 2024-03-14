@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.jdc.payroll.domain.AbstractEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,7 +21,7 @@ public class Employee extends AbstractEntity{
 	@Id
 	private String code;
 	
-	@OneToOne(optional = false)
+	@OneToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Account account;
 	
 	@ManyToOne(optional = false)
