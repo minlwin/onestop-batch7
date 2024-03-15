@@ -26,7 +26,7 @@ public class ApiWebConfiguration implements WebMvcConfigurer{
 		return builder -> {
 			builder.simpleDateFormat(dateFormat);
 			builder.serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)));
-			builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofLocalizedPattern(dateTimeFormat)));
+			builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
 			builder.deserializers(new LocalDateDeserializer(DateTimeFormatter.ofPattern(dateFormat)));
 			builder.deserializers(new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
 		};

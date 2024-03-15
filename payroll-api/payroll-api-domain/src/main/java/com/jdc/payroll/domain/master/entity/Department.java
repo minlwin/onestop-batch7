@@ -1,11 +1,15 @@
 package com.jdc.payroll.domain.master.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.jdc.payroll.domain.AbstractEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,4 +29,6 @@ public class Department extends AbstractEntity{
 	@ManyToOne
 	private Employee manager;
 	
+	@OneToMany(mappedBy = "department")
+	private List<Employee> employees = new ArrayList<>();
 }

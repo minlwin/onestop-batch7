@@ -1,7 +1,7 @@
 package com.jdc.payroll.master.service;
 
 import static com.jdc.payroll.utils.helpers.EntityOperationHelper.created;
-import static com.jdc.payroll.utils.helpers.EntityOperationHelper.notFound;
+import static com.jdc.payroll.utils.helpers.EntityOperationHelper.getOne;
 import static com.jdc.payroll.utils.helpers.EntityOperationHelper.updated;
 
 import java.time.LocalDate;
@@ -47,7 +47,7 @@ public class HolidayService {
 	@Transactional
 	public DataModificationResult<LocalDate> update(LocalDate date, HolidayFormForUpdate form) {
 		
-		var entity = notFound(repo.findById(date), DOMAIN_NAME, date.format(appDateFormatter));
+		var entity = getOne(repo.findById(date), DOMAIN_NAME, date.format(appDateFormatter));
 		entity.setType(form.type());
 		entity.setHoliday(form.holiday());
 		entity.setRemark(form.remark());
@@ -56,7 +56,7 @@ public class HolidayService {
 	}
 
 	public HolidayInfoDetails findById(LocalDate date) {
-		var entity = notFound(repo.findById(date), DOMAIN_NAME, date.format(appDateFormatter));
+		var entity = getOne(repo.findById(date), DOMAIN_NAME, date.format(appDateFormatter));
 		return HolidayInfoDetails.from(entity);
 	}
 
@@ -93,6 +93,9 @@ public class HolidayService {
 			var root = cq.from(Holiday.class);
 			HolidayInfo.select(cq, root);
 			cq.where(search.where(cb, root));
+			
+			cq.orderBy(cb.asc(root.get(Holiday_.date)));
+			
 			return cq;
 		};
 	}

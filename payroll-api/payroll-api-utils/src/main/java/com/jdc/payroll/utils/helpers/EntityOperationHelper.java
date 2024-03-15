@@ -7,7 +7,7 @@ import com.jdc.payroll.utils.response.DataModificationResult;
 
 public class EntityOperationHelper {
 
-	public static<T, ID> T notFound(Optional<T> optional, String domain, ID id) {
+	public static<T, ID> T getOne(Optional<T> optional, String domain, ID id) {
 		var message = "There is no %s with id %s!".formatted(domain, id);
 		return optional.orElseThrow(() -> new ApiBusinessException(message));
 	}
