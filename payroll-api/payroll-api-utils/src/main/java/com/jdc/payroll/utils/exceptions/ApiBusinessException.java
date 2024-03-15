@@ -10,4 +10,8 @@ public class ApiBusinessException extends ApiBaseException{
 		super(messages);
 	}
 
+	public ApiBusinessException(String message) {
+		super(List.of(message));
+	}
+	
 }

@@ -24,8 +24,20 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.jdc.payroll</groupId>
 			<artifactId>payroll-api-utils</artifactId>
+			<scope>provided</scope>
+		</dependency>		
+
+		<dependency>
+			<groupId>com.jdc.payroll</groupId>
+			<artifactId>payroll-api-domain</artifactId>
 			<scope>provided</scope>
 		</dependency>		
 
