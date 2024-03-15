@@ -16,6 +16,6 @@ public class DepartmentCodeValidator implements ConstraintValidator<DepartmentCo
 	
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return repo.countByCode(value) > 0;
+		return repo.countByCode(value) == 0L;
 	}
 }
