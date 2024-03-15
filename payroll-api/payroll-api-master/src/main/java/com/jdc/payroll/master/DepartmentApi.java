@@ -33,6 +33,7 @@ public class DepartmentApi {
 	ApiResponse<DataModificationResult<String>> create(
 			@Validated @RequestBody DepartmentFormForCreate form, 
 			BindingResult result) {
+		
 		return ApiResponse.success(null);
 	}
 	
@@ -41,6 +42,7 @@ public class DepartmentApi {
 			@PathVariable String code, 
 			@Validated @RequestBody DepartmentFormForUpdate form, 
 			BindingResult result) {
+		
 		return ApiResponse.success(null);
 	}
 	
