@@ -18,14 +18,14 @@ public record EmployeeInfo(
 
 	public static EmployeeInfo from(Employee entity) {
 		return new EmployeeInfo(
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null);
+			entity.getCode(), 
+			entity.getAccount().getName(), 
+			entity.getPhone(), 
+			entity.getDepartment().getName(), 
+			entity.getPosition().getPosition(), 
+			entity.getStatus(), 
+			entity.getAssignDate(), 
+			entity.getRetireDate(), 
+			entity.getRemark());
 	}
 }

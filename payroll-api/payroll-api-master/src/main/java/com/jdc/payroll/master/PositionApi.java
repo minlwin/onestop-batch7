@@ -2,6 +2,7 @@ package com.jdc.payroll.master;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,36 +18,38 @@ import com.jdc.payroll.master.input.PositionFormForUpdate;
 import com.jdc.payroll.master.input.PositionSearch;
 import com.jdc.payroll.master.output.PositionInfo;
 import com.jdc.payroll.master.output.PositionInfoDetails;
+import com.jdc.payroll.master.service.PositionService;
 import com.jdc.payroll.utils.response.ApiResponse;
 import com.jdc.payroll.utils.response.DataModificationResult;
 
 @RestController
 @RequestMapping("position")
 public class PositionApi {
+	
+	@Autowired
+	private PositionService service;
 
 	@GetMapping
 	ApiResponse<List<PositionInfo>> search(PositionSearch search) {
-		return ApiResponse.success(null);
+		return ApiResponse.success(service.search(search));
 	}
 	
 	@PostMapping
 	ApiResponse<DataModificationResult<String>> create(
 			@Validated @RequestBody PositionFormForCreate form, BindingResult result) {
-		return ApiResponse.success(null);
+		return ApiResponse.success(service.create(form));
 	}
 	
-	@PutMapping("{department}/{position}")
+	@PutMapping("{code}")
 	ApiResponse<DataModificationResult<String>> update(
-			@PathVariable String department, 
-			@PathVariable String position, 
+			@PathVariable String code, 
 			@Validated @RequestBody PositionFormForUpdate form, BindingResult result) {
-		return ApiResponse.success(null);
+		return ApiResponse.success(service.update(code, form));
 	}
 	
-	@GetMapping("{department}/{position}")
+	@GetMapping("{code}")
 	ApiResponse<PositionInfoDetails> findById(
-			@PathVariable String department, 
-			@PathVariable String position) {
-		return ApiResponse.success(null);
+			@PathVariable String code) {
+		return ApiResponse.success(service.findById(code));
 	}
 }

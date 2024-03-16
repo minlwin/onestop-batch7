@@ -47,7 +47,9 @@ public class Employee extends AbstractEntity{
 	@Column(nullable = false)
 	private LocalDate assignDate;
 	
-	private LocalDate statusChangeDate;
+	private LocalDate retireDate;
+	
+	private String remark;
 	
 	public enum Status {
 		Provation, Permenant, Retired

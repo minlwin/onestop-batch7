@@ -23,18 +23,18 @@ public record EmployeeInfoDetails(
 
 	public static EmployeeInfoDetails from(Employee entity) {
 		return new EmployeeInfoDetails(
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null);
+			entity.getCode(), 
+			entity.getAccount().getName(), 
+			entity.getAccount().getUsername(), 
+			entity.getPhone(), 
+			entity.getEmail(), 
+			entity.getDateOfBirth(), 
+			entity.getGender(), 
+			entity.getDepartment().getName(), 
+			entity.getPosition().getPosition(), 
+			entity.getStatus(), 
+			entity.getAssignDate(), 
+			entity.getRetireDate(), 
+			entity.getRemark());
 	}
 }
