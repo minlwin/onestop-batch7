@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,6 +29,12 @@ public class Account extends AbstractEntity{
 
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(nullable = false)
+	private Role role;
+	
+	@OneToOne(mappedBy = "account")
+	private Employee employee;
 	
 	public enum Role {
 		Admin, Employee

@@ -28,7 +28,7 @@ public record PositionSearch(
 		
 		if(StringUtils.hasLength(position)) {
 			list.add(cb.or(
-				cb.equal(root.get(Position_.id).get(PositionPk_.code), position),
+				cb.equal(root.get(Position_.id).get(PositionPk_.positionCode), position),
 				cb.like(cb.lower(root.get(Position_.position)), position.toLowerCase().concat("%"))
 			));
 		}

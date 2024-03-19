@@ -83,7 +83,7 @@ public class PositionService {
 			cq.where(search.where(cb, root));
 			cq.orderBy(
 				cb.asc(root.get(Position_.id).get(PositionPk_.departmentCode)),
-				cb.asc(root.get(Position_.id).get(PositionPk_.code))
+				cb.asc(root.get(Position_.id).get(PositionPk_.positionCode))
 			);
 			return cq;
 		};
