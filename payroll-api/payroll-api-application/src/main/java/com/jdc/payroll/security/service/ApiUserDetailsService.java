@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jdc.payroll.domain.master.entity.Account;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
 import com.jdc.payroll.domain.master.repo.AccountRepo;
+import com.jdc.payroll.security.api.model.UserDetailsForAdmin;
+import com.jdc.payroll.security.api.model.UserDetailsForEmployee;
 
 @Service
 @Transactional(readOnly = true)
@@ -23,14 +25,21 @@ public class ApiUserDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return repo.findOneByUsername(username)
-				.map(account -> User.withUsername(username)
-						.password(account.getPassword())
-						.authorities(account.getRole().name())
-						.disabled(isDisable(account))
-						.accountExpired(isExpired(account))
-						.build())
+		
+		var account = repo.findOneByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException(username));
+		
+		var user = User.withUsername(username)
+				.password(account.getPassword())
+				.authorities(account.getRole().name())
+				.disabled(isDisable(account))
+				.accountExpired(isExpired(account))
+				.build();
+		
+		var employee = account.getEmployee();	
+		
+		return (null == employee) ? new UserDetailsForAdmin(user, account.getName()) : 
+			new UserDetailsForEmployee(user, employee, account.getName());
 	}
 
 	private boolean isExpired(Account account) {
