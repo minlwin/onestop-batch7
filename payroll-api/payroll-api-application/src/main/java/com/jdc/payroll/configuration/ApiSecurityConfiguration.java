@@ -16,7 +16,7 @@ import com.jdc.payroll.security.service.ApiTokenFilter;
 
 @Configuration
 @PropertySource({
-	"/app-token.properties"
+	"classpath:/app-token.properties"
 })
 public class ApiSecurityConfiguration {
 
@@ -29,9 +29,10 @@ public class ApiSecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		http.csrf(csrf -> csrf.disable());
+		http.cors(cors -> {});
 		
 		http.authorizeHttpRequests(request -> {
-			request.requestMatchers("/public/**").permitAll();
+			request.requestMatchers("/public/**", "/swagger-ui/**", "/api/v1/auth/**", "/v3/api-docs/**").permitAll();
 			request.anyRequest().fullyAuthenticated();
 		});
 		

@@ -14,6 +14,6 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = DepartmentCodeValidator.class)
 public @interface DepartmentCode {
 	String message() default "Invalid department code.";
-	Class<?>[] group() default {};
+	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

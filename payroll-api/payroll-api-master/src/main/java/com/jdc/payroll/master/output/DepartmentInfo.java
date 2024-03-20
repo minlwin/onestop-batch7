@@ -28,6 +28,7 @@ public record DepartmentInfo(
 			root.get(Department_.name),
 			manager.get(Employee_.code),
 			manager.get(Employee_.account).get(Account_.name),
+			manager.get(Employee_.phone),
 			cb.count(employee.get(Employee_.code))
 		);
 		

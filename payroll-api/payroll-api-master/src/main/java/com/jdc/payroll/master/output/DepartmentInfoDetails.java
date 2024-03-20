@@ -16,7 +16,7 @@ public record DepartmentInfoDetails(
 				entity.getCode(), 
 				entity.getName(), 
 				entity.getDescription(), 
-				EmployeeInfoDetails.from(entity.getManager()), 
+				null != entity.getManager() ? EmployeeInfoDetails.from(entity.getManager()) : null, 
 				entity.getEmployees().stream().map(EmployeeInfo::from).toList());
 	}
 

@@ -14,7 +14,6 @@ public class UserDetailsForEmployee extends UserDetailsBase{
 		this.employee = employee;
 	}
 
-
 	@Override
 	public SignInResult signInResult(String token) {
 		var result = new SignInResultForEmployee();
