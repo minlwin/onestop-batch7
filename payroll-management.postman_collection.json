@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "d4ed52ec-b212-4704-963b-5b702b005372",
+		"name": "payroll-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2989298"
+	},
+	"item": [
+		{
+			"name": "singin",
+			"item": [
+				{
+					"name": "signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"",
+									"if(response.success) {",
+									"    pm.collectionVariables.set('token', response.payload.token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"adminpass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/public/signin",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"public",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "holiday-api",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/holiday?from=2024-01-01&to=2024-12-31",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"holiday"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Weekend",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "to",
+									"value": "2024-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\" : \"2024-01-01\",\n    \"type\" : \"Special\",\n    \"holiday\" : \"New Year Holiday\",\n    \"remark\" : \"New Year Holiday of 2024\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/holiday",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"holiday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/holiday/2024-01-01",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"holiday",
+								"2024-01-01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\" : \"Special\",\n    \"holiday\" : \"New Year\",\n    \"remark\" : \"New Year Holiday of 2024\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/holiday/2024-01-02",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"holiday",
+								"2024-01-02"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "department-api",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/department",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"",
+									"if(response.success) {",
+									"    pm.collectionVariables.set('departmentCode', response.payload.id)   ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"HRD\",\n  \"name\": \"Human Resources Department\",\n  \"description\": \"Department for HR Management\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/department",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/department/{{departmentCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"department",
+								"{{departmentCode}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "position-api",
+			"item": []
+		},
+		{
+			"name": "employee-api",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "departmentCode",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
