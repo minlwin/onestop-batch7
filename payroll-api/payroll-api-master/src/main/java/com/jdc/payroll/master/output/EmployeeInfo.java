@@ -20,6 +20,7 @@ public record EmployeeInfo(
 		String position,
 		Status status,
 		LocalDate assignAt,
+		LocalDate provationPassAt,
 		LocalDate retiredAt,
 		String remark) {
 	
@@ -32,7 +33,9 @@ public record EmployeeInfo(
 			root.get(Employee_.position).get(Position_.position),
 			root.get(Employee_.status),
 			root.get(Employee_.assignDate),
-			root.get(Employee_.retireDate)			
+			root.get(Employee_.provationPassDate),
+			root.get(Employee_.retireDate),
+			root.get(Employee_.remark)
 		);
 	}
 
@@ -45,6 +48,7 @@ public record EmployeeInfo(
 			entity.getPosition().getPosition(), 
 			entity.getStatus(), 
 			entity.getAssignDate(), 
+			entity.getProvationPassDate(),
 			entity.getRetireDate(), 
 			entity.getRemark());
 	}

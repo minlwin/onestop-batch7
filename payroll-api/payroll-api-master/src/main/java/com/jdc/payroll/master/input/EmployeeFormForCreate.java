@@ -52,6 +52,11 @@ public record EmployeeFormForCreate(
 		employee.setDateOfBirth(dob);
 		employee.setStatus(status);
 		employee.setAssignDate(assignDate);
+		
+		if(status == Status.Permenant) {
+			employee.setProvationPassDate(assignDate);
+		}
+		
 		employee.setRemark(remark);
 		
 		return employee;

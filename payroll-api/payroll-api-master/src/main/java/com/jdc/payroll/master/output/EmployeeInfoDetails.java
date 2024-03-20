@@ -1,6 +1,7 @@
 package com.jdc.payroll.master.output;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.jdc.payroll.domain.master.entity.Employee;
 import com.jdc.payroll.domain.master.entity.Employee.Gender;
@@ -18,8 +19,10 @@ public record EmployeeInfoDetails(
 		String position,
 		Status status,
 		LocalDate assignAt,
+		LocalDate provationPassAt,
 		LocalDate retiredAt,
-		String remark) {
+		String remark,
+		List<EmployeeHistoryInfo> history) {
 
 	public static EmployeeInfoDetails from(Employee entity) {
 		return new EmployeeInfoDetails(
@@ -34,7 +37,9 @@ public record EmployeeInfoDetails(
 			entity.getPosition().getPosition(), 
 			entity.getStatus(), 
 			entity.getAssignDate(), 
+			entity.getProvationPassDate(),
 			entity.getRetireDate(), 
-			entity.getRemark());
+			entity.getRemark(),
+			entity.getHistory().stream().map(EmployeeHistoryInfo::from).toList());
 	}
 }

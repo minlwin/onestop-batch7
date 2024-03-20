@@ -1,4 +1,4 @@
-package com.jdc.payroll.domain;
+package com.jdc.payroll.domain.master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -8,13 +8,15 @@ import java.time.LocalDate;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jdc.payroll.domain.EmployeeCodeGenerator;
+import com.jdc.payroll.domain.master.EmployeeCodeGenerator;
 import com.jdc.payroll.domain.master.entity.Employee;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
+import com.jdc.payroll.domain.master.entity.EmployeeHistory.Type;
 import com.jdc.payroll.domain.master.entity.Employee_;
 import com.jdc.payroll.domain.master.entity.PositionPk;
 import com.jdc.payroll.domain.master.repo.DepartmentRepo;
@@ -27,6 +29,7 @@ import com.jdc.payroll.master.input.EmployeeFormForUpdateStatus;
 import com.jdc.payroll.master.input.EmployeeSearch;
 import com.jdc.payroll.master.output.EmployeeInfo;
 import com.jdc.payroll.master.output.EmployeeInfoDetails;
+import com.jdc.payroll.master.service.events.EmployeeChangeEvent;
 import com.jdc.payroll.utils.response.DataModificationResult;
 import com.jdc.payroll.utils.response.Pager;
 
@@ -49,6 +52,9 @@ public class EmployeeService {
 	private PositionRepo positionRepo;
 	@Autowired
 	private EmployeeCodeGenerator codeGenerator;
+	
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	public DataModificationResult<String> create(EmployeeFormForCreate form) {
 		
@@ -62,7 +68,9 @@ public class EmployeeService {
 		entity.setDepartment(depertment);
 		entity.setPosition(position);
 		
-		entity = employeeRepo.save(entity);
+		entity = employeeRepo.saveAndFlush(entity);
+		
+		publisher.publishEvent(new EmployeeChangeEvent(Type.Entry, entity));
 		
 		return created(code, DOMAIN_NAME);
 	}
@@ -78,6 +86,9 @@ public class EmployeeService {
 		entity.setAssignDate(form.assignDate());
 		entity.setRemark(form.remark());
 		
+		entity = employeeRepo.saveAndFlush(entity);
+		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeInfo, entity));
+		
 		return updated(code, DOMAIN_NAME);
 	}
 	
@@ -89,6 +100,9 @@ public class EmployeeService {
 		entity.setPosition(position);
 		entity.setRemark(form.remark());
 		
+		entity = employeeRepo.saveAndFlush(entity);
+		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangePosition, entity));
+
 		return updated(code, DOMAIN_NAME);
 	}
 
@@ -101,6 +115,13 @@ public class EmployeeService {
 		if(form.status() == Status.Retired) {
 			entity.setRetireDate(LocalDate.now());
 		}
+		
+		if(form.status() == Status.Permenant) {
+			entity.setProvationPassDate(LocalDate.now());
+		}
+
+		entity = employeeRepo.saveAndFlush(entity);
+		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeStatus, entity));
 		
 		return updated(code, DOMAIN_NAME);
 	}

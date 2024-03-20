@@ -1,6 +1,7 @@
 package com.jdc.payroll.domain.master.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.jdc.payroll.domain.AbstractEntity;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -54,9 +56,13 @@ public class Employee extends AbstractEntity{
 	@Column(nullable = false, name = "assign_date")
 	private LocalDate assignDate;
 	
+	private LocalDate provationPassDate;
 	private LocalDate retireDate;
 	
 	private String remark;
+	
+	@OneToMany(mappedBy = "employee")
+	private List<EmployeeHistory> history;
 	
 	public enum Status {
 		Provation, Permenant, Retired
