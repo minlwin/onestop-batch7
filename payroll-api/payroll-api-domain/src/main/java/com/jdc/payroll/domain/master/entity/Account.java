@@ -36,6 +36,8 @@ public class Account extends AbstractEntity{
 	@OneToOne(mappedBy = "account")
 	private Employee employee;
 	
+	private boolean activated;
+	
 	public enum Role {
 		Admin, Employee
 	}

@@ -1,13 +1,12 @@
 package com.jdc.payroll.master.input;
 
 import com.jdc.payroll.domain.master.entity.Department;
-import com.jdc.payroll.master.validators.DepartmentCode;
+import com.jdc.payroll.master.validators.DepartmentCodeForUnique;
 
 import jakarta.validation.constraints.NotBlank;
 
 public record DepartmentFormForCreate(
-		@DepartmentCode(message = "Department code is already used.")
-		@NotBlank(message = "Please enter department code.")
+		@DepartmentCodeForUnique(message = "Department code is already used.")
 		String code,
 		@NotBlank(message = "Please enter department name.")
 		String name,

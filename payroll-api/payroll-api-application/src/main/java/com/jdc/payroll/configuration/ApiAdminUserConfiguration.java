@@ -21,12 +21,15 @@ public class ApiAdminUserConfiguration {
 	@Bean
 	ApplicationRunner applicationRunner() {
 		return args -> {
-			var admin = new Account();
-			admin.setName("Admin User");
-			admin.setUsername("admin");
-			admin.setPassword(encoder.encode("adminpass"));
-			admin.setRole(Role.Admin);
-			repo.save(admin);
+			if(repo.count() == 0L) {
+				var admin = new Account();
+				admin.setName("Admin User");
+				admin.setUsername("admin");
+				admin.setPassword(encoder.encode("adminpass"));
+				admin.setRole(Role.Admin);
+				admin.setActivated(true);
+				repo.save(admin);
+			}
 		};
 	}
 }

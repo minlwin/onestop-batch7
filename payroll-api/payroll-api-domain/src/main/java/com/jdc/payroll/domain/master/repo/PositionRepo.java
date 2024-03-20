@@ -6,4 +6,5 @@ import com.jdc.payroll.domain.master.entity.PositionPk;
 
 public interface PositionRepo extends BaseRepository<Position, PositionPk>{
 
+	long countById(PositionPk id);
 }

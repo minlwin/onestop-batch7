@@ -8,11 +8,13 @@ import java.lang.annotation.Target;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import jakarta.validation.constraints.NotBlank;
 
 @Retention(RUNTIME)
 @Target(PARAMETER)
-@Constraint(validatedBy = DepartmentCodeValidator.class)
-public @interface DepartmentCode {
+@Constraint(validatedBy = DepartmentCodeForUniqueValidator.class)
+@NotBlank
+public @interface DepartmentCodeForUnique {
 	String message() default "Invalid department code.";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

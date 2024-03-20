@@ -9,8 +9,8 @@ public class UserDetailsForEmployee extends UserDetailsBase{
 	private static final long serialVersionUID = 1L;
 	private Employee employee;
 	
-	public UserDetailsForEmployee(UserDetails user, Employee employee, String name) {
-		super(user, name);
+	public UserDetailsForEmployee(UserDetails user, Employee employee, String name, boolean activated) {
+		super(user, name, activated);
 		this.employee = employee;
 	}
 

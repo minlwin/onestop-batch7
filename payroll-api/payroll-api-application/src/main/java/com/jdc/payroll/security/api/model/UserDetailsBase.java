@@ -10,15 +10,21 @@ public abstract class UserDetailsBase implements UserDetails, SignInResultProvid
 	private static final long serialVersionUID = 1L;
 	private UserDetails user;
 	private String name;
+	private boolean activated;
 	
-	public UserDetailsBase(UserDetails user, String name) {
+	public UserDetailsBase(UserDetails user, String name, boolean activated) {
 		super();
 		this.user = user;
 		this.name = name;
+		this.activated = activated;
 	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	public boolean isActivated() {
+		return activated;
 	}
 	
 

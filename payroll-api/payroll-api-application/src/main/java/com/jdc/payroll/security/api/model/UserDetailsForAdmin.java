@@ -6,8 +6,8 @@ public class UserDetailsForAdmin extends UserDetailsBase{
 
 	private static final long serialVersionUID = 1L;
 	
-	public UserDetailsForAdmin(UserDetails user, String name) {
-		super(user, name);
+	public UserDetailsForAdmin(UserDetails user, String name, boolean activated) {
+		super(user, name, activated);
 	}
 	
 	@Override

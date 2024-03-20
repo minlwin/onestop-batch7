@@ -11,4 +11,5 @@ public class SignInResult {
 	private String name;
 	private List<String> authorities;
 	private String token;
+	private boolean activated;
 }

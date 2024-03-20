@@ -37,9 +37,11 @@ public class ApiUserDetailsService implements UserDetailsService{
 				.build();
 		
 		var employee = account.getEmployee();	
+		var name = account.getName();
+		var activated = account.isActivated();
 		
-		return (null == employee) ? new UserDetailsForAdmin(user, account.getName()) : 
-			new UserDetailsForEmployee(user, employee, account.getName());
+		return (null == employee) ? new UserDetailsForAdmin(user, name, activated) : 
+			new UserDetailsForEmployee(user, employee, name, activated);
 	}
 
 	private boolean isExpired(Account account) {

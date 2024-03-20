@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.payroll.master.input.EmployeeFormForCreate;
 import com.jdc.payroll.master.input.EmployeeFormForUpdate;
+import com.jdc.payroll.master.input.EmployeeFormForUpdatePosition;
+import com.jdc.payroll.master.input.EmployeeFormForUpdateStatus;
 import com.jdc.payroll.master.input.EmployeeSearch;
 import com.jdc.payroll.master.output.EmployeeInfo;
 import com.jdc.payroll.master.output.EmployeeInfoDetails;
@@ -48,6 +50,18 @@ public class EmployeeApi {
 		return ApiResponse.success(service.update(code, form));
 	}
 	
+	@PutMapping("{code}/position")
+	ApiResponse<DataModificationResult<String>> update(@PathVariable String code,
+			@Validated @RequestBody EmployeeFormForUpdatePosition form, BindingResult result) {
+		return ApiResponse.success(service.update(code, form));
+	}
+
+	@PutMapping("{code}/status")
+	ApiResponse<DataModificationResult<String>> update(@PathVariable String code,
+			@Validated @RequestBody EmployeeFormForUpdateStatus form, BindingResult result) {
+		return ApiResponse.success(service.update(code, form));
+	}
+
 	@GetMapping("{code}")
 	ApiResponse<EmployeeInfoDetails> findById(@PathVariable String code) {
 		return ApiResponse.success(service.findById(code));

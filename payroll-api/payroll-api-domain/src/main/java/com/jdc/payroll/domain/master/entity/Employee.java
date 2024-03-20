@@ -8,13 +8,20 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
+@Table(
+	indexes = {
+		@Index(columnList = "assign_date")
+	}
+)
 @EqualsAndHashCode(callSuper = false)
 public class Employee extends AbstractEntity{
 
@@ -44,7 +51,7 @@ public class Employee extends AbstractEntity{
 	@Column(nullable = false)
 	private Status status;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "assign_date")
 	private LocalDate assignDate;
 	
 	private LocalDate retireDate;
