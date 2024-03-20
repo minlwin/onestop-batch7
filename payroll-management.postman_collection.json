@@ -291,16 +291,477 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Human Resources\",\n  \"description\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/department/{{departmentCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"department",
+								"{{departmentCode}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "position-api",
-			"item": []
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/position?department=HRDS",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"position"
+							],
+							"query": [
+								{
+									"key": "department",
+									"value": "HRDS"
+								},
+								{
+									"key": "position",
+									"value": "super",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"",
+									"if(response.success) {",
+									"    pm.collectionVariables.set('positionCode', response.payload.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"department\": \"{{departmentCode}}\",\n  \"positionCode\": \"EMP\",\n  \"positionName\": \"Employee\",\n  \"basicSalary\": 300000,\n  \"otPerHour\": 5000,\n  \"anualLeaves\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/position",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"position"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/position/{{positionCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"position",
+								"{{positionCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"positionName\": \"Supervisor\",\n  \"basicSalary\": 550000,\n  \"otPerHour\": 4500,\n  \"anualLeaves\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/position/{{positionCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"position",
+								"{{positionCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSupervisor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"",
+									"if(response.success) {",
+									"    pm.collectionVariables.set('newPositionCode', response.payload.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"department\": \"{{departmentCode}}\",\n  \"positionCode\": \"SPV\",\n  \"positionName\": \"Supervisor\",\n  \"basicSalary\": 500000,\n  \"otPerHour\": 5000,\n  \"anualLeaves\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/position?department=HRDS",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"position"
+							],
+							"query": [
+								{
+									"key": "department",
+									"value": "HRDS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "employee-api",
-			"item": []
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/employee",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"",
+									"if(response.success) {",
+									"    pm.collectionVariables.set('employeeCode', response.payload.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Aung Aung\",\n  \"department\": \"{{departmentCode}}\",\n  \"position\": \"{{positionCode}}\",\n  \"phone\": \"09182727373\",\n  \"email\": \"aung@gmail.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"2000-03-20\",\n  \"assignDate\": \"2024-03-01\",\n  \"status\": \"Provation\",\n  \"remark\": \"First Registration\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/employee",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/employee/{{employeeCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee",
+								"{{employeeCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateInfo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Aung Aung\",\n  \"phone\": \"09182727399\",\n  \"email\": \"mr.aung@gmail.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"2000-03-20\",\n  \"assignDate\": \"2024-03-01\",\n  \"remark\": \"Change Phone and email.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/employee/{{employeeCode}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee",
+								"{{employeeCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStatus",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"Permenant\",\n  \"remark\": \"Update Status\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/employee/{{employeeCode}}/status",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee",
+								"{{employeeCode}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePosition",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"position\": \"{{newPositionCode}}\",\n  \"remark\": \"Change Position for Promotion\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/employee/{{employeeCode}}/position",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"employee",
+								"{{employeeCode}}",
+								"position"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -338,6 +799,25 @@
 			"key": "departmentCode",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "positionCode",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "employeeCode",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "newPositionCode\n",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "newPositionCode",
+			"value": ""
 		}
 	]
 }
