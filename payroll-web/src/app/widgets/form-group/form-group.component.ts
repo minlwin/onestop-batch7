@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-form-group',
@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FormGroupComponent {
 
-  @Input()
-  label = ''
+  label = input.required()
+  vertical = input<boolean>(false)
+
 }

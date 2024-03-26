@@ -5,51 +5,58 @@
       <i class="bi-house"></i> Payroll Management System
     </a>
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/attendance']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-check"></i> Attendance</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/leave']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-minus"></i> Leave</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/payroll']" routerLinkActive="active"  class="nav-link"><i class="bi-envelope"></i> Payroll</a>
-      </li>
-  <li class="nav-item dropdown">
-        <a routerLinkActive="router-link-active"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-          <i class="bi-database"></i> Master Data
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a [routerLink]="['/department']" routerLinkActive="active" class="dropdown-item">
-              <i class="bi-building"></i> Department
+    @if (!anonymous) {
+      <ul class="navbar-nav">
+
+        @if (activated) {
+          <li class="nav-item">
+            <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/attendance']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-check"></i> Attendance</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/leave']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-minus"></i> Leave</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/payroll']" routerLinkActive="active"  class="nav-link"><i class="bi-envelope"></i> Payroll</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a routerLinkActive="router-link-active"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <i class="bi-database"></i> Master Data
             </a>
-          </li>
+            <ul class="dropdown-menu">
               <li>
-            <a [routerLink]="['/position']" routerLinkActive="active" class="dropdown-item"><i class="bi-briefcase"></i> Position</a>
+                <a [routerLink]="['/department']" routerLinkActive="active" class="dropdown-item">
+                  <i class="bi-building"></i> Department
+                </a>
+              </li>
+                  <li>
+                <a [routerLink]="['/position']" routerLinkActive="active" class="dropdown-item"><i class="bi-briefcase"></i> Position</a>
+              </li>
+              <li>
+                <a [routerLink]="['/allowance']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-open-heart"></i> Allowance</a>
+              </li>
+              <li>
+                <a [routerLink]="['/deduction']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-exclamation"></i> Deduction</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <a [routerLink]="['/holiday']" routerLinkActive="active" class="dropdown-item"><i class="bi-calendar-heart"></i> Holiday</a>
+              </li>
+              <li>
+                <a [routerLink]="['/settings']" routerLinkActive="active" class="dropdown-item"><i class="bi-gear"></i> Settings</a>
+              </li>
+            </ul>
           </li>
-          <li>
-            <a [routerLink]="['/allowance']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-open-heart"></i> Allowance</a>
-          </li>
-          <li>
-            <a [routerLink]="['/deduction']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-exclamation"></i> Deduction</a>
-          </li>
-          <li class="dropdown-divider"></li>
-          <li>
-            <a [routerLink]="['/holiday']" routerLinkActive="active" class="dropdown-item"><i class="bi-calendar-heart"></i> Holiday</a>
-          </li>
-          <li>
-            <a [routerLink]="['/settings']" routerLinkActive="active" class="dropdown-item"><i class="bi-gear"></i> Settings</a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link"><i class="bi-lock"></i> Sign Out</a>
-      </li>
-    </ul>
+        }
+
+        <li class="nav-item">
+          <a href="#" class="nav-link"><i class="bi-lock"></i> Sign Out</a>
+        </li>
+      </ul>
+    }
+
   </div>
 </nav>
 

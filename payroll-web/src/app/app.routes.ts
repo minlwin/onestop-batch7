@@ -23,9 +23,13 @@ import { DepartmentEditComponent } from './pages/department-edit/department-edit
 import { DepartmentDetailsComponent } from './pages/department-details/department-details.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SettingsEditComponent } from './pages/settings-edit/settings-edit.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'signin', component: SigninComponent},
+  {path: 'change-pass', component: ChangePasswordComponent},
   {path: 'department', children: [
     {path: 'list', component: DepartmentComponent},
     {path: 'edit', component: DepartmentEditComponent},
