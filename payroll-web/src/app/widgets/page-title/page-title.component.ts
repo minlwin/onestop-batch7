@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-page-title',
@@ -7,10 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PageTitleComponent {
 
-  @Input()
-  title = ""
-
-  @Input()
-  icon = ""
+  title = input.required<string>()
+  icon = input.required<string>()
 
 }

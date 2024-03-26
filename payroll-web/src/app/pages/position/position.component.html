@@ -12,40 +12,64 @@
     </button>
   </div>
 
-  <form action="#" searchForm class="row">
+  <form [formGroup]="form" searchForm class="row">
     <div class="col-auto">
       <app-form-group label="Department">
-        <input type="text" class="form-control" placeholder="Department Code">
+        <input formControlName="department" type="text" class="form-control" placeholder="Department Code">
       </app-form-group>
     </div>
 
     <div class="col-auto">
       <app-form-group label="Position">
-        <input type="text" class="form-control" placeholder="Position Code or Name">
+        <input formControlName="position" type="text" class="form-control" placeholder="Position Code">
       </app-form-group>
     </div>
 
     <div class="col btn-wrapper">
-      <button class="btn btn-outline-primary">
+      <button (click)="search()" type="button" class="btn btn-outline-primary">
         <i class="bi-search"></i> Search
       </button>
     </div>
 
   </form>
 
-  <table resultList class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Department</th>
-        <th>Code</th>
-        <th>Position</th>
-        <th>Basic Salary</th>
-        <th>Anual Leaves</th>
-        <th>OT Fees</th>
-        <th></th>
-      </tr>
-    </thead>
-  </table>
+  <div resultList>
+    @if (list().length) {
+      <table  class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th class="text-end">Basic Salary</th>
+            <th class="text-end">Anual Leaves</th>
+            <th class="text-end">OT Fees</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of list(); track $index) {
+            <tr>
+              <td>{{item.positionCode}}</td>
+              <td>{{item.positionName}}</td>
+              <td>{{item.departmentName}}</td>
+              <td class="text-end">{{item.basicSalary | number}}</td>
+              <td class="text-end">{{item.otFeesPerHour | number}}</td>
+              <td class="text-end">{{item.anualLeaves | number}}</td>
+              <td class="text-center">
+                <a [routerLink]="['/position', 'details']" [queryParams]="{id: item.code}" class="icon-link">
+                  <i class="bi-send"></i>
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <app-no-data domain="Position"></app-no-data>
+    }
+  </div>
 
 </app-list-view>
 

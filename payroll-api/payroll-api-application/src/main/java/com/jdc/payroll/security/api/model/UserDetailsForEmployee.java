@@ -21,13 +21,14 @@ public class UserDetailsForEmployee extends UserDetailsBase{
 		result.setToken(token);
 		result.setLoginId(getUsername());
 		result.setAuthorities(getAuthorities().stream().map(a -> a.getAuthority()).toList());
+		result.setActivated(isActivated());
 		
 		result.setAssignDate(employee.getAssignDate());
 		result.setStatus(employee.getStatus());
 		result.setDepartmentCode(employee.getDepartment().getCode());
 		result.setDepartmentName(employee.getDepartment().getName());
-		result.setPositionCode(employee.getPosition().getId().getPositionCode());
-		result.setPositionName(employee.getPosition().getPosition());
+		result.setPositionCode(employee.getPosition().getId().getPositionCode().name());
+		result.setPositionName(employee.getPosition().getId().getPositionCode().getValue());
 		
 		return result;
 	}

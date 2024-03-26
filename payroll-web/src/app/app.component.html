@@ -5,10 +5,10 @@
       <i class="bi-house"></i> Payroll Management System
     </a>
 
-    @if (!anonymous) {
+    @if (!anonymous()) {
       <ul class="navbar-nav">
 
-        @if (activated) {
+        @if (activated()) {
           <li class="nav-item">
             <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
           </li>
@@ -52,7 +52,7 @@
         }
 
         <li class="nav-item">
-          <a href="#" class="nav-link"><i class="bi-lock"></i> Sign Out</a>
+          <a (click)="signOut()" class="nav-link"><i class="bi-lock"></i> Sign Out</a>
         </li>
       </ul>
     }

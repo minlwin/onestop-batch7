@@ -1,0 +1,28 @@
+<app-page-title [icon]="edit() ? 'bi-pencil' : 'bi-plus-lg'" [title]="edit() ? 'Edit Department' : 'Create Department'"></app-page-title>
+
+<form [formGroup]="form">
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Code" [valid]="form.get('code')?.valid">
+        @if (edit()) {
+          <span class="form-control">{{form.get('code')?.value}}</span>
+        } @else {
+          <input formControlName="code" type="text" class="form-control" placeholder="Enter Department Code">
+        }
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Name" [valid]="form.get('name')?.valid">
+        <input formControlName="name" type="text" class="form-control" placeholder="Enter Department Name">
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <app-form-group label="Description" [vertical]="true">
+    <textarea formControlName="description" class="form-control"></textarea>
+  </app-form-group>
+
+  <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-primary">
+    <i class="bi-save"></i> Save
+  </button>
+</form>

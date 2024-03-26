@@ -2,7 +2,7 @@
 
   <div controlsBtns>
     <!-- Export Button -->
-    <a class="btn btn-outline-primary">
+    <a [routerLink]="['/department', 'edit']" class="btn btn-outline-primary">
       <i class="bi-plus-lg"></i> Create
     </a>
     <button class="btn btn-outline-primary ms-2">
@@ -25,22 +25,43 @@
       </app-form-group>
     </div>
     <div class="col btn-wrapper">
-      <button class="btn btn-outline-primary">
+      <button (click)="search()" type="button" class="btn btn-outline-primary">
         <i class="bi-search"></i> Search
       </button>
     </div>
   </form>
 
-  <table resultList class="table table-bordered mt-2">
-    <thead>
-      <tr>
-        <th>Code</th>
-        <th>Department</th>
-        <th>Manager Name</th>
-        <th>Manager Phone</th>
-        <th>Employees</th>
-        <th></th>
-      </tr>
-    </thead>
-  </table>
+  @if(list().length) {
+    <table resultList class="table table-bordered mt-2">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Department</th>
+          <th>Manager Name</th>
+          <th>Manager Phone</th>
+          <th>Employees</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of list(); track $index) {
+          <tr>
+            <td>{{item.code}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.managerName}}</td>
+            <td>{{item.managerPhone}}</td>
+            <td>{{item.employees}}</td>
+            <td class="text-center">
+              <a href="#" [routerLink]="['/department', 'details']" [queryParams]="{code : item.code}" class="icon-link">
+                <i class="bi-send"></i>
+              </a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <app-no-data domain="Department"></app-no-data>
+  }
+
 </app-list-view>

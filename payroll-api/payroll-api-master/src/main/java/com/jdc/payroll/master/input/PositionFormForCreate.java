@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import com.jdc.payroll.domain.master.entity.Position;
 import com.jdc.payroll.domain.master.entity.PositionPk;
+import com.jdc.payroll.domain.master.entity.PositionPk.PositionCode;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,9 +13,7 @@ public record PositionFormForCreate(
 		@NotBlank(message = "Please select department.")
 		String department,
 		@NotBlank(message = "Please enter position code.")
-		String positionCode,
-		@NotBlank(message = "Please enter position name.")
-		String positionName,
+		String position,
 		@NotNull(message = "Please enter basic salary.")
 		BigDecimal basicSalary,
 		@NotNull(message = "Please enter OT fees.")
@@ -26,11 +25,10 @@ public record PositionFormForCreate(
 	public Position entity() {
 		var id = new PositionPk();
 		id.setDepartmentCode(department);
-		id.setPositionCode(positionCode);
+		id.setPositionCode(PositionCode.valueOf(position));
 
 		var entity = new Position();
 		entity.setId(id);
-		entity.setPosition(positionName);
 		entity.setBasicSalary(basicSalary);
 		entity.setOtFeesPerHour(otPerHour);
 		entity.setAnualLeaves(anualLeaves);

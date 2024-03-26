@@ -54,13 +54,13 @@ public class DepartmentService {
 
 	public DataModificationResult<String> update(String code, DepartmentFormForManagerChanges form) {
 		var entity = getOne(repo.findById(code), DOMAIN_NAME, code);
-		var manager = getOne(employeeRepo.findById(form.managerCode()), EMPLOYEE_DOMAIN, form.managerCode());
+		var manager = getOne(employeeRepo.findById(form.headCode()), EMPLOYEE_DOMAIN, form.headCode());
 		
 		if(!manager.getDepartment().getCode().equals(code)) {
-			throw new ApiBusinessException("Employee for manager is from other department.");
+			throw new ApiBusinessException("Employee for head of department is from other department.");
 		}
 		
-		entity.setManager(manager);
+		entity.setHeadOfDepartment(manager);
 		
 		return updated(code, DOMAIN_NAME);
 	}

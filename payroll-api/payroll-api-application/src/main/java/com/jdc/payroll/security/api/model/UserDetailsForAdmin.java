@@ -16,6 +16,7 @@ public class UserDetailsForAdmin extends UserDetailsBase{
 		result.setName(getName());
 		result.setToken(token);
 		result.setLoginId(getUsername());
+		result.setActivated(isActivated());
 		result.setAuthorities(getAuthorities().stream().map(a -> a.getAuthority()).toList());
 		return result;
 	}

@@ -8,16 +8,19 @@ public record DepartmentInfoDetails(
 		String code,
 		String name,
 		String description, 
-		EmployeeInfoDetails manager,
-		List<EmployeeInfo> employees) {
+		EmployeeInfo hod,
+		List<EmployeeInfo> employees, 
+		List<PositionInfo> positions) {
 	
 	public static DepartmentInfoDetails from(Department entity) {
 		return new DepartmentInfoDetails(
 				entity.getCode(), 
 				entity.getName(), 
 				entity.getDescription(), 
-				null != entity.getManager() ? EmployeeInfoDetails.from(entity.getManager()) : null, 
-				entity.getEmployees().stream().map(EmployeeInfo::from).toList());
+				null != entity.getHeadOfDepartment() ? EmployeeInfo.from(entity.getHeadOfDepartment()) : null, 
+				entity.getEmployees().stream().map(EmployeeInfo::from).toList(),
+				entity.getPositions().stream().map(PositionInfo::from).toList()
+				);
 	}
 
 }

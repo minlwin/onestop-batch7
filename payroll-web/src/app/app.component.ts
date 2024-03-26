@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SecurityContextService } from './services/security-context.service';
 
@@ -12,11 +12,14 @@ import { SecurityContextService } from './services/security-context.service';
 export class AppComponent {
   title = 'payroll-web';
 
+  anonymous = computed(() => !this.security.loginUser())
+  activated = computed(() => this.security.loginUser()?.activated)
+
   constructor(
     private security:SecurityContextService,
-    router:Router) {
-    if(security.loginUser) {
-      if(security.loginUser.activated) {
+    private router:Router) {
+    if(security.loginUser()) {
+      if(security.loginUser()?.activated) {
 
       } else {
         router.navigate(['/change-pass'])
@@ -26,11 +29,8 @@ export class AppComponent {
     }
   }
 
-  get anonymous() {
-    return !this.security.loginUser
-  }
-
-  get activated() {
-    return this.security.loginUser?.activated
+  signOut() {
+    this.security.loginUser.set(undefined)
+    this.router.navigate(['/signin'])
   }
 }

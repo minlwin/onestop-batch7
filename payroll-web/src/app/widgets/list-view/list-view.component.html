@@ -1,5 +1,5 @@
 <!-- Title -->
-<app-page-title [icon]="icon" [title]="title">
+<app-page-title [icon]="icon()" [title]="title()">
   <div>
     <ng-content select="[controlsBtns]"></ng-content>
   </div>
@@ -15,5 +15,7 @@
   <ng-content select="[resultList]"></ng-content>
 </div>
 
-<!-- Pagination -->
-<app-pagination></app-pagination>
+@if (showPager()) {
+  <!-- Pagination -->
+  <app-pagination></app-pagination>
+}

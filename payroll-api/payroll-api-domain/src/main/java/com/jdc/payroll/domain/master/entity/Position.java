@@ -1,6 +1,7 @@
 package com.jdc.payroll.domain.master.entity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.jdc.payroll.domain.AbstractEntity;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,9 +27,6 @@ public class Position extends AbstractEntity {
 	private Department department;
 	
 	@Column(nullable = false)
-	private String position;
-	
-	@Column(nullable = false)
 	private BigDecimal basicSalary;
 
 	@Column(nullable = false)
@@ -35,4 +34,7 @@ public class Position extends AbstractEntity {
 	
 	@Column(nullable = false)
 	private int anualLeaves;
+	
+	@OneToMany(mappedBy = "position")
+	private List<Employee> employees;
 }

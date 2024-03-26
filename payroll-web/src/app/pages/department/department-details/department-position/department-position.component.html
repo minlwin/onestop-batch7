@@ -1,0 +1,29 @@
+@if (list().length) {
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th class="text-end">Basic Salary</th>
+        <th class="text-end">OT/Hour</th>
+        <th class="text-end">Annual Leaves</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of list(); track $index) {
+        <tr>
+          <td>{{item.positionCode}}</td>
+          <td>{{item.positionName}}</td>
+          <td class="text-end">{{item.basicSalary | number}}</td>
+          <td class="text-end">{{item.otFeesPerHour | number}}</td>
+          <td class="text-end">{{item.anualLeaves | number}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+} @else {
+  <app-no-data domain="Position in Department"></app-no-data>
+}

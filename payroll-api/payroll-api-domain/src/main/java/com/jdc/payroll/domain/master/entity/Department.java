@@ -1,6 +1,5 @@
 package com.jdc.payroll.domain.master.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.jdc.payroll.domain.AbstractEntity;
@@ -27,8 +26,11 @@ public class Department extends AbstractEntity{
 	private String description;
 	
 	@ManyToOne
-	private Employee manager;
+	private Employee headOfDepartment;
 	
 	@OneToMany(mappedBy = "department")
-	private List<Employee> employees = new ArrayList<>();
+	private List<Employee> employees;
+	
+	@OneToMany(mappedBy = "department")
+	private List<Position> positions;
 }

@@ -16,7 +16,7 @@ import jakarta.persistence.criteria.Root;
 
 public record DepartmentSearch(
 		String department,
-		String manager) {
+		String head) {
 
 	public Predicate [] where(CriteriaBuilder cb, Root<Department> root) {
 		var list = new ArrayList<Predicate>();
@@ -29,9 +29,9 @@ public record DepartmentSearch(
 			));
 		}
  		
-		if(StringUtils.hasLength(manager)) {
-			var employee = root.join(Department_.manager, JoinType.LEFT);
-			var param = manager.toLowerCase().concat("%");
+		if(StringUtils.hasLength(head)) {
+			var employee = root.join(Department_.headOfDepartment, JoinType.LEFT);
+			var param = head.toLowerCase().concat("%");
 			list.add(cb.or(
 				cb.like(cb.lower(employee.get(Employee_.code)), param),
 				cb.like(cb.lower(employee.get(Employee_.account).get(Account_.name)), param)

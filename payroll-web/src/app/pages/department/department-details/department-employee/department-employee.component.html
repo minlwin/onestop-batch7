@@ -1,0 +1,33 @@
+@if (list().length) {
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Position</th>
+        <th>Status</th>
+        <th>Assign At</th>
+        <th>Provation Pass</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of list(); track $index) {
+        <tr>
+          <td>{{item.code}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.position}}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.assignAt}}</td>
+          <td>{{item.provationPassAt}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+} @else {
+  <app-no-data domain="Employee in department"></app-no-data>
+}

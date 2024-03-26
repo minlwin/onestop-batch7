@@ -41,7 +41,7 @@ public class PositionService {
 		var entity = form.entity();
 		
 		if(repo.findById(entity.getId()).isPresent()) {
-			var message = "Position code %s has already been used in department with code %s.".formatted(form.positionCode(), form.department());
+			var message = "Position code %s has already been used in department with code %s.".formatted(form.position(), form.department());
 			throw new ApiBusinessException(message);
 		}
 		
@@ -54,7 +54,6 @@ public class PositionService {
 		var id = PositionPk.parse(code);
 		var entity = getOne(repo.findById(id), DOMAIN_NAME, id.getCode());
 		
-		entity.setPosition(form.positionName());
 		entity.setBasicSalary(form.basicSalary());
 		entity.setOtFeesPerHour(form.otPerHour());
 		entity.setAnualLeaves(form.anualLeaves());

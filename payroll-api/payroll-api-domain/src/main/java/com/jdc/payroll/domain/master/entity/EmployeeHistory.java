@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import com.jdc.payroll.domain.AbstractEntity;
 import com.jdc.payroll.domain.master.entity.Employee.Gender;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
+import com.jdc.payroll.domain.master.entity.PositionPk.PositionCode;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -37,8 +38,7 @@ public class EmployeeHistory extends AbstractEntity{
 	
 	private String departmentCode;
 	private String departmentName;
-	private String positionCode;
-	private String positionName;
+	private PositionCode position;
 	
 	private String phone;
 	private String email;
@@ -77,8 +77,7 @@ public class EmployeeHistory extends AbstractEntity{
 		this.name = employee.getAccount().getName();
 		this.departmentCode = employee.getDepartment().getCode();
 		this.departmentName = employee.getDepartment().getName();
-		this.positionCode = employee.getPosition().getId().getCode();
-		this.positionName = employee.getPosition().getPosition();
+		this.position = employee.getPosition().getId().getPositionCode();
 		this.phone = employee.getPhone();
 		this.email = employee.getEmail();
 		this.gender = employee.getGender();

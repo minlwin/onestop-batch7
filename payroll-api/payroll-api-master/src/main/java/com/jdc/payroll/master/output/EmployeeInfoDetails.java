@@ -6,6 +6,7 @@ import java.util.List;
 import com.jdc.payroll.domain.master.entity.Employee;
 import com.jdc.payroll.domain.master.entity.Employee.Gender;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
+import com.jdc.payroll.domain.master.entity.PositionPk.PositionCode;
 
 public record EmployeeInfoDetails(
 		String code,
@@ -16,13 +17,17 @@ public record EmployeeInfoDetails(
 		LocalDate dateOfBirth,
 		Gender gender,
 		String department,
-		String position,
+		PositionCode position,
 		Status status,
 		LocalDate assignAt,
 		LocalDate provationPassAt,
 		LocalDate retiredAt,
 		String remark,
 		List<EmployeeHistoryInfo> history) {
+	
+	public String getPositionName() {
+		return position.getValue();
+	}
 
 	public static EmployeeInfoDetails from(Employee entity) {
 		return new EmployeeInfoDetails(
@@ -34,7 +39,7 @@ public record EmployeeInfoDetails(
 			entity.getDateOfBirth(), 
 			entity.getGender(), 
 			entity.getDepartment().getName(), 
-			entity.getPosition().getPosition(), 
+			entity.getPosition().getId().getPositionCode(), 
 			entity.getStatus(), 
 			entity.getAssignDate(), 
 			entity.getProvationPassDate(),

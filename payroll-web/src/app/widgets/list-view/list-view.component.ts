@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-list-view',
@@ -7,9 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ListViewComponent {
 
-  @Input()
-  title = ""
+  title = input.required<string>()
+  icon = input.required<string>()
 
-  @Input()
-  icon = ""
+  showPager = input<boolean>(false)
 }

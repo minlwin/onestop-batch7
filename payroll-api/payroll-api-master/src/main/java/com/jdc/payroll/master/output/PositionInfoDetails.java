@@ -4,24 +4,33 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.jdc.payroll.domain.master.entity.Position;
+import com.jdc.payroll.domain.master.entity.PositionPk;
 
 public record PositionInfoDetails(
-		String departmentCode,
+		PositionPk id,
 		String departmentName,
-		String positionCode,
-		String positionName,
 		BigDecimal basicSalary,
 		BigDecimal otFeesPerHour,
 		int anualLeaves,
 		List<EmployeeInfo> employees
 	) {
+	
+	public String getDisplayName() {
+		return "%s of %s".formatted(id.getPositionCode().getValue(), departmentName);
+	}
+	
+	public String getPositionCode() {
+		return id.getCode();
+	}
+	
+	public String getPositionName() {
+		return id.getPositionCode().getValue();
+	}
 
 	public static PositionInfoDetails from(Position entity) {
 		return new PositionInfoDetails(
-			entity.getDepartment().getCode(), 
+			entity.getId(),
 			entity.getDepartment().getName(), 
-			entity.getId().getCode(), 
-			entity.getPosition(), 
 			entity.getBasicSalary(), 
 			entity.getOtFeesPerHour(), 
 			entity.getAnualLeaves(), 

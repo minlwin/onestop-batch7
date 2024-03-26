@@ -8,23 +8,24 @@ import { PositionComponent } from './pages/position/position.component';
 import { AllowanceComponent } from './pages/allowance/allowance.component';
 import { DeductionComponent } from './pages/deduction/deduction.component';
 import { HolidayComponent } from './pages/holiday/holiday.component';
-import { AttendanceEditComponent } from './pages/attendance-edit/attendance-edit.component';
-import { LeaveEditComponent } from './pages/leave-edit/leave-edit.component';
-import { LeaveDetailsComponent } from './pages/leave-details/leave-details.component';
-import { PayrollDetailsComponent } from './pages/payroll-details/payroll-details.component';
-import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.component';
-import { EmployeeDetailsComponent } from './pages/employee-details/employee-details.component';
-import { PositionEditComponent } from './pages/position-edit/position-edit.component';
-import { AllowanceEditComponent } from './pages/allowance-edit/allowance-edit.component';
-import { DeductionEditComponent } from './pages/deduction-edit/deduction-edit.component';
-import { HolidayEditComponent } from './pages/holiday-edit/holiday-edit.component';
+import { AttendanceEditComponent } from './pages/attendance/attendance-edit/attendance-edit.component';
+import { LeaveEditComponent } from './pages/leave/leave-edit/leave-edit.component';
+import { LeaveDetailsComponent } from './pages/leave/leave-details/leave-details.component';
+import { PayrollDetailsComponent } from './pages/payroll/payroll-details/payroll-details.component';
+import { EmployeeEditComponent } from './pages/employee/employee-edit/employee-edit.component';
+import { EmployeeDetailsComponent } from './pages/employee/employee-details/employee-details.component';
+import { PositionEditComponent } from './pages/position/position-edit/position-edit.component';
+import { AllowanceEditComponent } from './pages/allowance/allowance-edit/allowance-edit.component';
+import { DeductionEditComponent } from './pages/deduction/deduction-edit/deduction-edit.component';
+import { HolidayEditComponent } from './pages/holiday/holiday-edit/holiday-edit.component';
 import { DepartmentComponent } from './pages/department/department.component';
-import { DepartmentEditComponent } from './pages/department-edit/department-edit.component';
-import { DepartmentDetailsComponent } from './pages/department-details/department-details.component';
+import { DepartmentEditComponent } from './pages/department/department-edit/department-edit.component';
+import { DepartmentDetailsComponent } from './pages/department/department-details/department-details.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { SettingsEditComponent } from './pages/settings-edit/settings-edit.component';
+import { SettingsEditComponent } from './pages/settings/settings-edit/settings-edit.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { PositionDetailsComponent } from './pages/position/position-details/position-details.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -61,6 +62,7 @@ export const routes: Routes = [
   {path: 'position', children: [
     {path: 'list', component: PositionComponent},
     {path: 'edit', component: PositionEditComponent},
+    {path: 'details', component: PositionDetailsComponent},
     {path: '', redirectTo: '/position/list', pathMatch: 'full'}
   ]},
   {path: 'allowance', children: [

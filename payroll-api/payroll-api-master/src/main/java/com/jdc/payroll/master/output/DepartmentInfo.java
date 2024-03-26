@@ -20,14 +20,15 @@ public record DepartmentInfo(
 
 	public static void select(CriteriaBuilder cb, CriteriaQuery<DepartmentInfo> cq, Root<Department> root) {
 		
-		var manager = root.join(Department_.manager, JoinType.LEFT);
+		var manager = root.join(Department_.headOfDepartment, JoinType.LEFT);
 		var employee = root.join(Department_.employees, JoinType.LEFT);
+		var account = employee.join(Employee_.account, JoinType.LEFT);
 		
 		cq.multiselect(
 			root.get(Department_.code),
 			root.get(Department_.name),
 			manager.get(Employee_.code),
-			manager.get(Employee_.account).get(Account_.name),
+			account.get(Account_.name),
 			manager.get(Employee_.phone),
 			cb.count(employee.get(Employee_.code))
 		);
@@ -36,7 +37,8 @@ public record DepartmentInfo(
 			root.get(Department_.code),
 			root.get(Department_.name),
 			manager.get(Employee_.code),
-			manager.get(Employee_.account).get(Account_.name)
+			account.get(Account_.name),
+			manager.get(Employee_.phone)
 		);
 	}
 }

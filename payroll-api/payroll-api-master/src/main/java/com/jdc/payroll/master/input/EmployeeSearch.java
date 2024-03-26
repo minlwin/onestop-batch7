@@ -46,13 +46,7 @@ public record EmployeeSearch(
 		}
 
 		if(StringUtils.hasLength(position)) {
-			list.add(
-				cb.or(
-					cb.equal(root.get(Employee_.position).get(Position_.id).get(PositionPk_.positionCode), position),
-					cb.like(cb.lower(root.get(Employee_.position).get(Position_.position)), 
-							position.toLowerCase().concat("%"))
-				)	
-			);
+			list.add(cb.equal(root.get(Employee_.position).get(Position_.id).get(PositionPk_.positionCode), position));
 		}
 		
 		if(StringUtils.hasLength(name)) {

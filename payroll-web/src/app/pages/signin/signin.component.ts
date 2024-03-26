@@ -32,7 +32,7 @@ export class SigninComponent {
       this.service.signIn(this.form.value).subscribe(result => {
         console.log(result)
         if(result.success) {
-          this.security.loginUser = result.payload
+          this.security.loginUser.set(result.payload)
           this.router.navigate(['/home'])
         }
       })
