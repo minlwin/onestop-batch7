@@ -37,4 +37,7 @@ public class Position extends AbstractEntity {
 	
 	@OneToMany(mappedBy = "position")
 	private List<Employee> employees;
+	
+	@OneToMany(mappedBy = "position")
+	private List<Permissions> permissions;
 }

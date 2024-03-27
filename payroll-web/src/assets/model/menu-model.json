@@ -1,0 +1,37 @@
+[
+  {
+    "title" : "",
+    "items" : [
+      {"type" : "personal", "name" : "Home", "path" : "/home"},
+      {"type" : "personal", "name" : "Attendance", "path" : "/attendance"},
+      {"type" : "personal", "name" : "Leave", "path" : "/leave"},
+      {"type" : "personal", "name" : "Payroll", "path" : "/payroll"}
+    ]
+  },
+  {
+    "title" : "Management",
+    "items" : [
+      {"type" : "employee", "name" : "Employee Management", "path" : "/management/employee"},
+      {"type" : "attendance", "name" : "Attendance Management", "path" : "/management/attendance"},
+      {"type" : "leave", "name" : "Leave Management", "path" : "/management/leave"},
+      {"type" : "payroll", "name" : "Payroll Management", "path" : "/management/payroll"}
+    ]
+  },
+  {
+    "title" : "Master Data",
+    "items" : [
+      {"type" : "department", "name" : "Department", "path" : "/master/department"},
+      {"type" : "position", "name" : "Position", "path" : "/master/position"},
+      {"type" : "allowance", "name" : "Allowance", "path" : "/master/allowance"},
+      {"type" : "deduction", "name" : "Deduction", "path" : "/master/deduction"}
+    ]
+  },
+  {
+    "title" : "Settings",
+    "items" : [
+      {"type" : "holiday", "name" : "Holidays", "path" : "/settings/holiday"},
+      {"type" : "leave-type", "name" : "Leave Types", "path" : "/settings/leave-type"},
+      {"type" : "setting", "name" : "System Settings", "path" : "/settings/system-setting"}
+    ]
+  }
+]

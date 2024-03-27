@@ -1,0 +1,62 @@
+<app-list-view icon="bi-people" title="Employee Management">
+
+  <div controlsBtns>
+    <!-- Create Button -->
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-plus-lg"></i> Create
+    </button>
+    <!-- Create Button -->
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-arrow-down-square"></i> Import
+    </button>
+    <!-- Export Button -->
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-arrow-up-square"></i> Export
+    </button>
+  </div>
+
+  <form searchForm action="#" class="row">
+    <!-- Department -->
+    <div class="col-auto">
+      <app-form-group label="Department">
+        <input type="tel" placeholder="Search Department Code" class="form-control">
+      </app-form-group>
+    </div>
+
+    <!-- Position -->
+    <div class="col-auto">
+      <app-form-group label="Position">
+        <input type="tel" placeholder="Search Position Code" class="form-control">
+      </app-form-group>
+    </div>
+
+    <!-- Name -->
+    <div class="col-auto">
+      <app-form-group label="Name">
+        <input type="tel" placeholder="Search Name" class="form-control">
+      </app-form-group>
+    </div>
+
+    <div class="col btn-wrapper">
+      <button class="btn btn-outline-primary">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <table resultList class="table table-bordered mt-2">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Position</th>
+        <th>Assign Date</th>
+        <th>Retired Date</th>
+        <th>Remark</th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+
+</app-list-view>

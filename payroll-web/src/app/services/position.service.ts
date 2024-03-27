@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse } from './api-response';
+import { ApiResponse } from '../model/api-response';
 import { environment } from '../../environments/environment';
 
 const BASE_URL = `${environment.baseUrl}/position`
@@ -18,5 +18,13 @@ export class PositionService {
 
   findById(id:string) {
     return this.http.get<ApiResponse>(`${BASE_URL}/${id}`)
+  }
+
+  save(edit:boolean, form:any) {
+    if(edit) {
+      const {code, ...updateForm} = form
+      return this.http.put<ApiResponse>(`${BASE_URL}/${code}`, updateForm)
+    }
+    return this.http.post<ApiResponse>(BASE_URL, form)
   }
 }

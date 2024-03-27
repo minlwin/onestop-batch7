@@ -1,65 +1,50 @@
-<nav class="navbar navbar-expand bg-info-subtle">
-  <div class="container-fluid">
+<div class="d-flex align-content-stretch w-100">
 
-    <a [routerLink]="['/home']" class="navbar-brand">
-      <i class="bi-house"></i> Payroll Management System
-    </a>
-
-    @if (!anonymous()) {
-      <ul class="navbar-nav">
-
-        @if (activated()) {
-          <li class="nav-item">
-            <a [routerLink]="['/employee']" routerLinkActive="active" class="nav-link"><i class="bi-people"></i> Employee</a>
-          </li>
-          <li class="nav-item">
-            <a [routerLink]="['/attendance']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-check"></i> Attendance</a>
-          </li>
-          <li class="nav-item">
-            <a [routerLink]="['/leave']" routerLinkActive="active" class="nav-link"><i class="bi-calendar-minus"></i> Leave</a>
-          </li>
-          <li class="nav-item">
-            <a [routerLink]="['/payroll']" routerLinkActive="active"  class="nav-link"><i class="bi-envelope"></i> Payroll</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a routerLinkActive="router-link-active"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <i class="bi-database"></i> Master Data
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a [routerLink]="['/department']" routerLinkActive="active" class="dropdown-item">
-                  <i class="bi-building"></i> Department
-                </a>
-              </li>
-                  <li>
-                <a [routerLink]="['/position']" routerLinkActive="active" class="dropdown-item"><i class="bi-briefcase"></i> Position</a>
-              </li>
-              <li>
-                <a [routerLink]="['/allowance']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-open-heart"></i> Allowance</a>
-              </li>
-              <li>
-                <a [routerLink]="['/deduction']" routerLinkActive="active" class="dropdown-item"><i class="bi-envelope-exclamation"></i> Deduction</a>
-              </li>
-              <li class="dropdown-divider"></li>
-              <li>
-                <a [routerLink]="['/holiday']" routerLinkActive="active" class="dropdown-item"><i class="bi-calendar-heart"></i> Holiday</a>
-              </li>
-              <li>
-                <a [routerLink]="['/settings']" routerLinkActive="active" class="dropdown-item"><i class="bi-gear"></i> Settings</a>
-              </li>
-            </ul>
-          </li>
+  <div class="sidebar shadow" [class.show]="showMenu()" [class.hide]="!showMenu()">
+    <div class="p-3">
+      <h5 (click)="toggleMenu()">
+        @if (showMenu()) {
+          <i class="bi-arrow-left"></i> Payroll Management
+        } @else {
+          <i class="bi-arrow-right"></i>
         }
+      </h5>
+    </div>
 
-        <li class="nav-item">
-          <a (click)="signOut()" class="nav-link"><i class="bi-lock"></i> Sign Out</a>
-        </li>
-      </ul>
+    @if (anonymous() && showMenu()) {
+      <div class="px-3">
+        <div class="alert alert-light">Welcome!</div>
+        <p>Please sign in to use payroll management system.</p>
+      </div>
     }
 
-  </div>
-</nav>
+    @if (!anonymous() && showMenu()) {
+      <div class="px-3">
+        @for (group of menus(); track $index) {
+          @if (group.title) {
+            <h6>{{group.title}}</h6>
+          }
 
-<div class="container-fluid mt-3">
-  <router-outlet></router-outlet>
+          <ul class="sidemenu" [class.mb-4]="$index < menus().length - 1">
+            @for (item of group.items; track $index) {
+              <li>
+                <a [routerLink]="[item.path]">{{item.name}}</a>
+              </li>
+            }
+          </ul>
+        }
+
+        <ul class="sidemenu">
+          <li>
+            <a (click)="signOut()" href="#">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    }
+  </div>
+
+  <div class="container-fluid px-4 mt-3">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

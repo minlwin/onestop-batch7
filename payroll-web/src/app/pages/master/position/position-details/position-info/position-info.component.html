@@ -1,0 +1,14 @@
+<table class="table table-bordered">
+  <tbody>
+    @for (item of informations(); track $index) {
+      <tr>
+        <th class="info-header">
+          {{item.name}}
+        </th>
+        <td>
+          {{item.value}}
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

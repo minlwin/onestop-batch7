@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
@@ -17,6 +18,7 @@ import lombok.Data;
 @EntityListeners(value = AuditingEntityListener.class)
 public abstract class AbstractEntity {
 
+	@Column(columnDefinition = "boolean default false")
 	private boolean deleted;
 	
 	@CreatedDate

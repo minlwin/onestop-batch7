@@ -5,7 +5,11 @@ import java.io.Serializable;
 import com.jdc.payroll.domain.master.entity.PositionPk.PositionCode;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.Data;
 
+@Data
+@Embeddable
 public class PermissionsPk implements Serializable{
 
 	private static final long serialVersionUID = 1L;

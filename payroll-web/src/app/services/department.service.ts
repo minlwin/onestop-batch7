@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ApiResponse } from './api-response';
+import { ApiResponse } from '../model/api-response';
 
 const BASE_URL = `${environment.baseUrl}/department`
 

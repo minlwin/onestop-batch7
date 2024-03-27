@@ -1,0 +1,51 @@
+<app-page-title [icon]="edit() ? 'bi-pencil' : 'bi-plus-lg'" [title]="edit() ? 'Edit Position' : 'Create Position'"></app-page-title>
+
+<form [formGroup]="form" >
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Department" [valid]="form.get('department')?.valid">
+        <select formControlName="department" class="form-select">
+          <option value="">Select Department</option>
+          @for (item of departments(); track $index) {
+            <option [value]="item.code">{{item.name}}</option>
+          }
+        </select>
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Position" [valid]="form.get('position')?.valid">
+        <select formControlName="position" class="form-select">
+          <option value="">Select Position</option>
+          @for (item of positionCodes(); track $index) {
+            <option [value]="item.code">{{item.name}}</option>
+          }
+        </select>
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+
+    <div class="col">
+      <app-form-group-check label="Basic Salary" [valid]="form.get('basicSalary')?.valid">
+        <input formControlName="basicSalary" type="number" class="form-control">
+      </app-form-group-check>
+    </div>
+
+    <div class="col">
+      <app-form-group-check label="OT Fees" [valid]="form.get('otPerHour')?.valid">
+        <input formControlName="otPerHour" type="number" class="form-control">
+      </app-form-group-check>
+    </div>
+
+    <div class="col">
+      <app-form-group-check label="Anual Leaves" [valid]="form.get('anualLeaves')?.valid">
+        <input formControlName="anualLeaves" type="number" class="form-control">
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <button (click)="save()" type="button" class="btn btn-outline-primary">
+    <i class="bi-save"></i> Save
+  </button>
+</form>

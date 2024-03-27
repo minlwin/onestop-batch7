@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import com.jdc.payroll.master.input.PositionFormForUpdate;
 import com.jdc.payroll.master.input.PositionSearch;
 import com.jdc.payroll.master.output.PositionInfo;
 import com.jdc.payroll.master.output.PositionInfoDetails;
+import com.jdc.payroll.master.service.events.PositionCreationEvent;
 import com.jdc.payroll.utils.exceptions.ApiBusinessException;
 import com.jdc.payroll.utils.response.DataModificationResult;
 
@@ -35,6 +37,9 @@ public class PositionService {
 	
 	@Autowired
 	private PositionRepo repo;
+	
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	public DataModificationResult<String> create(PositionFormForCreate form) {
 		
@@ -46,6 +51,8 @@ public class PositionService {
 		}
 		
 		entity = repo.save(entity);
+		
+		publisher.publishEvent(new PositionCreationEvent(entity.getId().getCode()));
 		
 		return created(entity.getId().getCode(), DOMAIN_NAME);
 	}

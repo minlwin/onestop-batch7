@@ -1,0 +1,31 @@
+@if (list().length) {
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+        <th>Enable</th>
+        <th>Read</th>
+        <th>Write</th>
+        <th>Modify</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of list(); track $index) {
+        <tr>
+          <td>{{item.resource}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.enable}}</td>
+          <td>{{item.read}}</td>
+          <td>{{item.write}}</td>
+          <td>{{item.modify}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+} @else {
+  <app-no-data domain="Permissions in this position"></app-no-data>
+}

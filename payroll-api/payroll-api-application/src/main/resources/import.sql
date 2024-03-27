@@ -1,0 +1,13 @@
+insert into resource (resource_type, name, base_urls, description) values ('Transaction', 'Personal Data', '/personal', 'Personal Data');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Resource', '/resource', 'Master data for resources');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Holiday', '/holiday', 'Master data for holidays');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Allowance', '/allowance', 'Master data for allowances');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Deduction', '/deduction', 'Master data for deductions');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Leave Type', '/leave-type', 'Master data for leave types');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Department', '/department', 'Master data for departments');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Position', '/position', 'Master data for positions');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Permission', '/permission', 'Master data for permissions');
+insert into resource (resource_type, name, base_urls, description) values ('Master', 'Employee', '/employee', 'Master data for employees');
+insert into resource (resource_type, name, base_urls, description) values ('Transaction', 'Attendance', '/attendance', 'Transaction data for attendances');
+insert into resource (resource_type, name, base_urls, description) values ('Transaction', 'Leave', '/leave', 'Transaction data for leaves');
+insert into resource (resource_type, name, base_urls, description) values ('Transaction', 'Payroll', '/payroll', 'Transaction data for payrolls');

@@ -12,7 +12,8 @@ public record PositionInfoDetails(
 		BigDecimal basicSalary,
 		BigDecimal otFeesPerHour,
 		int anualLeaves,
-		List<EmployeeInfo> employees
+		List<EmployeeInfo> employees,
+		List<PermissionInfo> permission
 	) {
 	
 	public String getDisplayName() {
@@ -34,10 +35,10 @@ public record PositionInfoDetails(
 			entity.getBasicSalary(), 
 			entity.getOtFeesPerHour(), 
 			entity.getAnualLeaves(), 
-			entity.getDepartment().getEmployees().stream()
-				.filter(a -> a.getPosition().getId().equals(entity.getId()))
-				.map(EmployeeInfo::from)
-				.toList());
+			entity.getEmployees().stream()
+				.map(EmployeeInfo::from).toList(),
+			entity.getPermissions().stream()
+				.map(PermissionInfo::from).toList());
 	}
 
 }

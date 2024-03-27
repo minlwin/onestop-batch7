@@ -8,3 +8,48 @@
 .info-header {
   width: 240px;
 }
+
+.sidebar {
+  overflow: scroll;
+}
+
+.sidebar.show {
+  width: 320px;
+}
+
+.sidebar.hide {
+  width: 60px;
+  text-align: center;
+}
+
+html, body, app-root {
+  height: 100% !important;
+}
+
+app-root {
+  display: flex;
+  width: 100% !important;
+}
+
+.sidemenu {
+  padding: 0px;
+  margin: 0px;
+}
+
+.sidemenu li{
+  list-style: none;
+}
+
+.sidemenu a {
+  display: block;
+  text-decoration: none;
+  color: teal;
+  padding: 4px 8px;
+}
+
+.sidemenu a:hover {
+  background-color: teal;
+  color: white;
+}
+
+
