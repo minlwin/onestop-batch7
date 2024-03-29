@@ -1,6 +1,7 @@
 package com.jdc.payroll.security.api.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.jdc.payroll.domain.master.entity.Employee.Status;
 
@@ -17,4 +18,6 @@ public class SignInResultForEmployee extends SignInResult{
 	private String positionName;
 	private Status status;
 	private LocalDate assignDate;
+	
+	private List<Permission> permissions;
 }

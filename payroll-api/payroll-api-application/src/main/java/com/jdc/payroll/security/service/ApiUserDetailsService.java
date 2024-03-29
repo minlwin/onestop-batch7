@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jdc.payroll.domain.master.entity.Account;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
 import com.jdc.payroll.domain.master.repo.AccountRepo;
-import com.jdc.payroll.security.api.model.UserDetailsForAdmin;
-import com.jdc.payroll.security.api.model.UserDetailsForEmployee;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,19 +27,12 @@ public class ApiUserDetailsService implements UserDetailsService{
 		var account = repo.findOneByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException(username));
 		
-		var user = User.withUsername(username)
+		return User.withUsername(username)
 				.password(account.getPassword())
 				.authorities(account.getRole().name())
 				.disabled(isDisable(account))
 				.accountExpired(isExpired(account))
 				.build();
-		
-		var employee = account.getEmployee();	
-		var name = account.getName();
-		var activated = account.isActivated();
-		
-		return (null == employee) ? new UserDetailsForAdmin(user, name, activated) : 
-			new UserDetailsForEmployee(user, employee, name, activated);
 	}
 
 	private boolean isExpired(Account account) {

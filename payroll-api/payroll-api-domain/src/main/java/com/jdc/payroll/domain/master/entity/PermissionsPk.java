@@ -22,4 +22,8 @@ public class PermissionsPk implements Serializable{
 
 	@Column(name = "resource_id")
 	private int resourceId;
+	
+	public String getId() {
+		return "%s-%s-%03d".formatted(departmentCode, positionCode, resourceId);
+	}
 }
