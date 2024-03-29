@@ -2,7 +2,7 @@ import { Component, computed, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SecurityContextService } from './services/security-context.service';
 import menus from '../assets/model/menu-model.json'
-import { MenuGroup } from './model/menu-model';
+import { MenuGroup } from './model/menu.model';
 
 @Component({
   selector: 'app-root',

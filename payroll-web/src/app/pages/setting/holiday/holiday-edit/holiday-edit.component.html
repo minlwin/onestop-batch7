@@ -1,1 +1,38 @@
-<p>holiday-edit works!</p>
+<app-page-title [icon]="edit() ? 'bi-pencil' : 'bi-plus-lg'" [title]="edit() ? 'Edit Holiday' : 'Create Holiday'"></app-page-title>
+
+<form [formGroup]="form">
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Date" [valid]="form.get('date')?.valid">
+        <input formControlName="date" type="date" class="form-control">
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Holiday Type" [valid]="form.get('type')?.valid">
+        <select formControlName="type" class="form-select">
+          <option value="">Select Type</option>
+          @for (item of types(); track $index) {
+            <option [value]="item">{{item}} Holiday</option>
+          }
+        </select>
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-8">
+      <app-form-group-check label="Holiday Name" [valid]="form.get('name')?.valid">
+        <input formControlName="holiday" type="text" placeholder="Enter Holiday Name" class="form-control">
+      </app-form-group-check>
+   </div>
+  </div>
+
+  <app-form-group-check label="Remark" [vertical]="true" [valid]="false">
+    <textarea formControlName="remark" class="form-control" placeholder="Enter Remark"></textarea>
+  </app-form-group-check>
+
+  <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-primary">
+    <i class="bi-save"></i> Save
+  </button>
+
+</form>

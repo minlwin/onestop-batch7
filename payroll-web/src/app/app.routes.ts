@@ -26,6 +26,8 @@ import { SettingsEditComponent } from './pages/setting/settings/settings-edit/se
 import { SigninComponent } from './pages/signin/signin.component';
 import { ChangePasswordComponent } from './pages/setting/change-password/change-password.component';
 import { PositionDetailsComponent } from './pages/master/position/position-details/position-details.component';
+import { LeaveTypeComponent } from './pages/setting/leave-type/leave-type.component';
+import { LeaveTypeEditComponent } from './pages/setting/leave-type/leave-type-edit/leave-type-edit.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -84,6 +86,11 @@ export const routes: Routes = [
       {path: 'list', component: HolidayComponent},
       {path: 'edit', component: HolidayEditComponent},
       {path: '', redirectTo: '/settings/holiday/list', pathMatch: 'full'}
+    ]},
+    {path: 'leave-type', children: [
+      {path: 'list', component: LeaveTypeComponent},
+      {path: 'edit', component: LeaveTypeEditComponent},
+      {path: '', redirectTo: '/settings/leave-type/list', pathMatch: 'full'}
     ]},
     {path: 'system-setting', children: [
       {path: 'details', component: SettingsComponent},

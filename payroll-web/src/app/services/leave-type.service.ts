@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from '../model/api-response';
 
-const BASE_URL = `${environment.baseUrl}/holiday`
+const BASE_URL = `${environment.baseUrl}/leave-type`
 
 @Injectable({
   providedIn: 'root'
 })
-export class HolidayService {
+export class LeaveTypeService {
 
   constructor(private http:HttpClient) { }
 
@@ -21,10 +21,13 @@ export class HolidayService {
   }
 
   save(edit:boolean, form:any) {
+
     if(edit) {
-      const {date, ...updateForm} = form
-      return this.http.put<ApiResponse>(`${BASE_URL}/${date}`, updateForm)
+      const {id, ... updateForm} = form
+      return this.http.put<ApiResponse>(`${BASE_URL}/${id}`, updateForm)
     }
+
     return this.http.post<ApiResponse>(BASE_URL, form)
   }
+
 }

@@ -1,8 +1,9 @@
 package com.jdc.payroll.domain.master.entity;
 
+import java.time.LocalDate;
+
 import com.jdc.payroll.domain.AbstractEntity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,14 +14,12 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
-public class LeaveType extends AbstractEntity{
+public class Settings extends AbstractEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = false, unique = true)
-	private String name;
-	
-	private int paidDays;
-	private String remark;
+	private LocalDate effectAt;
+	private int cutOffDay;
+	private int payDay;
 }

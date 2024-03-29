@@ -1,0 +1,25 @@
+<app-page-title [icon]="edit() ? 'bi-pencil' : 'bi-plus-lg'" [title]="edit() ? 'Edit Leave Type' : 'Create Leave Type'"></app-page-title>
+
+<form [formGroup]="form">
+  <div class="row mb-3">
+    <div class="col-6">
+      <app-form-group-check label="Leave Type Name" [valid]="form.get('name')?.valid">
+        <input formControlName="name" type="text" class="form-control" placeholder="Enter Leave Type Name">
+      </app-form-group-check>
+    </div>
+
+    <div class="col-3">
+      <app-form-group-check label="Leave Days" [valid]="form.get('paidDay')?.valid">
+        <input formControlName="paidDays" type="number" class="form-control" placeholder="Enter Leave Days">
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <app-form-group label="Remark" [vertical]="true">
+    <textarea formControlName="remark" class="form-control"></textarea>
+  </app-form-group>
+
+  <button (click)="save()" [class.disabled]="!form.valid" type="button" class="btn btn-outline-primary">
+    <i class="bi-save"></i> Save
+  </button>
+</form>

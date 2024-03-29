@@ -1,28 +1,25 @@
 import { Component, signal } from '@angular/core';
 import { WidgetsModule } from '../../../widgets/widgets.module';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { EmployeeService } from '../../../services/employee.service';
 import { Pager } from '../../../model/pager.model';
+import { LeaveTypeService } from '../../../services/leave-type.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-employee',
+  selector: 'app-leave-type',
   standalone: true,
-  imports: [WidgetsModule, CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './employee.component.html',
+  imports: [WidgetsModule, ReactiveFormsModule, RouterLink],
+  templateUrl: './leave-type.component.html',
   styles: ``
 })
-export class EmployeeComponent {
+export class LeaveTypeComponent {
 
   form:FormGroup
   list = signal<any[]>([])
   page = signal<Pager | undefined>(undefined)
 
-  constructor(builder:FormBuilder, private service:EmployeeService) {
+  constructor(builder:FormBuilder, private service:LeaveTypeService) {
     this.form = builder.group({
-      department: '',
-      position: '',
       name: ''
     })
 
@@ -32,10 +29,9 @@ export class EmployeeComponent {
   search() {
     this.service.search(this.form.value).subscribe(result => {
       if(result.success) {
-        const {list, ... pager} = result.payload
-        this.list.set(list)
-        this.page.set(pager)
+        this.list.set(result.payload)
       }
     })
   }
+
 }

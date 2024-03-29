@@ -1,4 +1,5 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { Pager } from '../../model/pager.model';
 
 @Component({
   selector: 'app-list-view',
@@ -9,6 +10,6 @@ export class ListViewComponent {
 
   title = input.required<string>()
   icon = input.required<string>()
-
-  showPager = input<boolean>(false)
+  pager = input<Pager | undefined>(undefined)
+  showPager = computed<boolean>(() => this.pager() != undefined)
 }

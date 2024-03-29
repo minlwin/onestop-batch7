@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdc.payroll.master.input.LeaveTypeForm;
-import com.jdc.payroll.master.input.LeaveTypeSearch;
-import com.jdc.payroll.master.output.LeaveTypeInfo;
-import com.jdc.payroll.master.service.LeaveTypeService;
+import com.jdc.payroll.master.input.SettingForm;
+import com.jdc.payroll.master.input.SettingSearch;
+import com.jdc.payroll.master.output.SettingInfo;
+import com.jdc.payroll.master.service.SettingsService;
 import com.jdc.payroll.utils.response.ApiResponse;
 import com.jdc.payroll.utils.response.DataModificationResult;
 
 @RestController
-@RequestMapping("leave-type")
-public class LeaveTypeApi {
+@RequestMapping("settings")
+public class SettingsApi {
 	
 	@Autowired
-	private LeaveTypeService service;
+	private SettingsService service;
 
 	@GetMapping
-	ApiResponse<List<LeaveTypeInfo>> search(LeaveTypeSearch search) {
+	ApiResponse<List<SettingInfo>> search(SettingSearch search) {
 		return ApiResponse.success(service.search(search));
 	}
-	
+
 	@GetMapping("{id}")
-	ApiResponse<LeaveTypeInfo> findById(@PathVariable int id) {
+	ApiResponse<SettingInfo> findById(@PathVariable int id) {
 		return ApiResponse.success(service.findById(id));
 	}
 	
 	@PostMapping
 	ApiResponse<DataModificationResult<Integer>> create(
-			@Validated @RequestBody LeaveTypeForm form, BindingResult result) {
+			@Validated @RequestBody SettingForm form, BindingResult result) {
 		return ApiResponse.success(service.create(form));
-	}	
+	}
 
 	@PutMapping("{id}")
-	ApiResponse<DataModificationResult<Integer>> update(@PathVariable int id, 
-			@Validated @RequestBody LeaveTypeForm form, BindingResult result) {
+	ApiResponse<DataModificationResult<Integer>> update(@PathVariable int id,
+			@Validated @RequestBody SettingForm form, BindingResult result) {
 		return ApiResponse.success(service.update(id, form));
-	}	
+	}
 }

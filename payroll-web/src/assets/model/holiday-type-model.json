@@ -1,0 +1,14 @@
+[
+  {
+    "code" : "Weekend",
+    "name" : "Weekend Holiday"
+  },
+  {
+    "code" : "Gazetted",
+    "name" : "Gazetted Holiday"
+  },
+  {
+    "code" : "Special",
+    "name" : "Special Holiday"
+  }
+]

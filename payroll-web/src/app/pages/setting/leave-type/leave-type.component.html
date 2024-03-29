@@ -1,0 +1,65 @@
+<app-list-view icon="bi-calendar-heart" [pager]="page()" title="Leave Types Setting">
+
+  <div controlsBtns>
+    <!-- Export Button -->
+    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
+      <i class="bi-plus-lg"></i> Create
+    </a>
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-arrow-down-square"></i> Import
+    </button>
+    <button class="btn btn-outline-primary ms-2">
+      <i class="bi-arrow-up-square"></i> Export
+    </button>
+  </div>
+
+  <form searchForm [formGroup]="form" class="row">
+    <div class="col-auto">
+      <app-form-group label="Leave Type Name">
+        <input placeholder="Search Name" class="form-control">
+      </app-form-group>
+    </div>
+
+    <div class="col btn-wrapper">
+      <button (click)="search()" class="btn btn-outline-primary">
+        <i class="bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  @if (list().length) {
+    <table resultList class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Paid Leaves</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of list(); track $index) {
+          <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.paidDays}}</td>
+            <td>{{item.remark}}</td>
+            <td class="text-center">
+              <a [routerLink]="['../', 'edit']" [queryParams]="{id: item.id}" class="btn-link">
+                <i class="bi-pencil"></i>
+              </a>
+            </td>
+          </tr>
+        }
+      </tbody>
+
+    </table>
+  } @else {
+    <app-no-data domain="Leave Type"></app-no-data>
+  }
+
+</app-list-view>
+
+

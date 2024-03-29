@@ -1,8 +1,8 @@
-<app-list-view icon="bi-calendar-heart" title="Holiday Management">
+<app-list-view icon="bi-calendar-heart" [pager]="page()" title="Holiday Setting">
 
   <div controlsBtns>
     <!-- Export Button -->
-    <a class="btn btn-outline-primary">
+    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
       <i class="bi-plus-lg"></i> Create
     </a>
     <button class="btn btn-outline-primary ms-2">
@@ -13,13 +13,13 @@
     </button>
   </div>
 
-  <form searchForm action="#" class="row">
+  <form [formGroup]="form" searchForm action="#" class="row">
     <div class="col-auto">
       <app-form-group label="Type">
-        <select class="form-select">
+        <select formControlName="type" class="form-select">
           <option value="">All Type</option>
-          @for (item of types; track $index) {
-            <option [value]="item">{{item}}</option>
+          @for (item of types(); track $index) {
+            <option [value]="item.code">{{item.name}}</option>
           }
         </select>
       </app-form-group>
@@ -27,18 +27,18 @@
 
     <div class="col-auto">
       <app-form-group label="Date From">
-        <input type="date" class="form-control">
+        <input formControlName="from" type="date" class="form-control">
       </app-form-group>
     </div>
 
     <div class="col-auto">
       <app-form-group label="Date To">
-        <input type="date" class="form-control">
+        <input formControlName="to" type="date" class="form-control">
       </app-form-group>
     </div>
 
     <div class="col btn-wrapper">
-      <button class="btn btn-outline-primary">
+      <button (click)="search()" type="button" class="btn btn-outline-primary">
         <i class="bi-search"></i> Search
       </button>
     </div>
@@ -54,6 +54,22 @@
         <th></th>
       </tr>
     </thead>
+
+    <tbody>
+      @for (item of list(); track $index) {
+        <tr>
+          <td>{{item.date}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.holiday}}</td>
+          <td>{{item.remark}}</td>
+          <td class="text-center">
+            <a [routerLink]="['../', 'edit']" [queryParams]="{date: item.date }" class="icon-link">
+              <i class="bi-send"></i>
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
   </table>
 
 </app-list-view>

@@ -1,1 +1,81 @@
-<p>employee-edit works!</p>
+<app-page-title [icon]="edit() ? 'bi-pencil' : 'bi-plus-lg'" [title]="edit() ? 'Edit Employee' : 'Create Employee'"></app-page-title>
+
+<form [formGroup]="form">
+
+  <div class="row mb-3">
+    <div class="col-8">
+      <app-form-group-check label="Name" [valid]="false">
+        <input formControlName="name" type="text" class="form-control" placeholder="Enter Employee Name">
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Department" [valid]="false">
+        <select formControlName="department" class="form-select">
+          <option value="">Select Department</option>
+        </select>
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Position" [valid]="false">
+        <select formControlName="position" class="form-select">
+          <option value="">Select Position</option>
+        </select>
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Gender" [valid]="false">
+        <select formControlName="gender" class="form-select">
+          <option value="">Select Gender</option>
+        </select>
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Date of Birth" [valid]="false">
+        <input formControlName="dob" type="date" class="form-control" >
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Phone Number" [valid]="false">
+        <input formControlName="phone" type="tel" class="form-control" placeholder="Enter Phone Number">
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Email Address" [valid]="false">
+        <input formControlName="email" type="email" class="form-control" placeholder="Enter Email Address">
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-4">
+      <app-form-group-check label="Status" [valid]="false">
+        <select formControlName="status" class="form-select">
+          <option value="">Select Status</option>
+        </select>
+      </app-form-group-check>
+    </div>
+    <div class="col-4">
+      <app-form-group-check label="Assign Date" [valid]="false">
+        <input formControlName="assignDate" type="date" class="form-control" >
+      </app-form-group-check>
+    </div>
+  </div>
+
+  <app-form-group-check label="Remark" [valid]="false" [vertical]="true">
+    <textarea formControlName="remark" class="form-control"></textarea>
+  </app-form-group-check>
+
+  <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-primary">
+    <i class="bi-save"></i> Save
+  </button>
+
+</form>
