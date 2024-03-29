@@ -51,16 +51,6 @@ public class ApiSecurityService {
 	}
 
 	private SignInResult buildREsultForEmployee(Account account, String token) {
-		var result = new SignInResult();
-		result.setActivated(account.isActivated());
-		result.setAuthorities(List.of(account.getRole().name()));
-		result.setLoginId(account.getUsername());
-		result.setName(account.getName());
-		result.setToken(token);
-		return result;
-	}
-
-	private SignInResult buildResultForAdmin(Account account, String token) {
 		
 		var result = new SignInResultForEmployee();
 
@@ -84,6 +74,16 @@ public class ApiSecurityService {
 		
 		result.setPermissions(permissions);
 		
+		return result;
+	}
+
+	private SignInResult buildResultForAdmin(Account account, String token) {
+		var result = new SignInResult();
+		result.setActivated(account.isActivated());
+		result.setAuthorities(List.of(account.getRole().name()));
+		result.setLoginId(account.getUsername());
+		result.setName(account.getName());
+		result.setToken(token);
 		return result;
 	}
 

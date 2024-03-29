@@ -28,6 +28,7 @@ import { ChangePasswordComponent } from './pages/setting/change-password/change-
 import { PositionDetailsComponent } from './pages/master/position/position-details/position-details.component';
 import { LeaveTypeComponent } from './pages/setting/leave-type/leave-type.component';
 import { LeaveTypeEditComponent } from './pages/setting/leave-type/leave-type-edit/leave-type-edit.component';
+import { PermissionEditComponent } from './pages/master/position/permission-edit/permission-edit.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -68,6 +69,7 @@ export const routes: Routes = [
       {path: 'list', component: PositionComponent},
       {path: 'edit', component: PositionEditComponent},
       {path: 'details', component: PositionDetailsComponent},
+      {path: 'permission', component: PermissionEditComponent},
       {path: '', redirectTo: '/master/position/list', pathMatch: 'full'}
     ]},
     {path: 'allowance', children: [

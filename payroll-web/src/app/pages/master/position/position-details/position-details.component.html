@@ -1,5 +1,8 @@
 <app-page-title icon="bi-briefcase" [title]="title()">
   <div>
+    <a [routerLink]="['../', 'permission']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
+      <i class="bi-pencil"></i> Edit Permission
+    </a>
     <a [routerLink]="['../', 'edit']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary">
       <i class="bi-pencil"></i> Edit Position
     </a>

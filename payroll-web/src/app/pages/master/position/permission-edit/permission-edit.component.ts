@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 import { WidgetsModule } from '../../../../widgets/widgets.module';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,6 +20,10 @@ export class PermissionEditComponent {
 
   constructor(builder:FormBuilder) {
     this.form = builder.group({
+
+    })
+
+    effect(() => {
 
     })
   }
