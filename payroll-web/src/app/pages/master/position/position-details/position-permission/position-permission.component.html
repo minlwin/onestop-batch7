@@ -5,23 +5,29 @@
       <tr>
         <th>Resource</th>
         <th>Description</th>
-        <th>Enable</th>
-        <th>Read</th>
-        <th>Write</th>
-        <th>Modify</th>
+        <th class="text-center checkbox-column">Read</th>
+        <th class="text-center checkbox-column">Write</th>
+        <th class="text-center checkbox-column">Modify</th>
       </tr>
     </thead>
 
     <tbody>
       @for (item of list(); track $index) {
-        <tr>
-          <td>{{item.resource}}</td>
-          <td>{{item.description}}</td>
-          <td>{{item.enable}}</td>
-          <td>{{item.read}}</td>
-          <td>{{item.write}}</td>
-          <td>{{item.modify}}</td>
-        </tr>
+        @if (item.enable) {
+          <tr>
+            <td>{{item.resource}}</td>
+            <td>{{item.description}}</td>
+            <td class="text-center">
+              <app-permission [state]="item.read"></app-permission>
+            </td>
+            <td class="text-center">
+              <app-permission [state]="item.write"></app-permission>
+            </td>
+            <td class="text-center">
+              <app-permission [state]="item.modify"></app-permission>
+            </td>
+          </tr>
+          }
       }
     </tbody>
   </table>

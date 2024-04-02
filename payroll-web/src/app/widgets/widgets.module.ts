@@ -9,6 +9,7 @@ import { InputGroupComponent } from './input-group/input-group.component';
 import { FormGroupCheckComponent } from './form-group-check/form-group-check.component';
 import { NoDataComponent } from './no-data/no-data.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { PermissionComponent } from './permission/permission.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
     InputGroupComponent,
     FormGroupCheckComponent,
     NoDataComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    PermissionComponent
   ],
   imports: [
     CommonModule
@@ -35,7 +37,8 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
     InputGroupComponent,
     FormGroupCheckComponent,
     NoDataComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    PermissionComponent
   ]
 })
 export class WidgetsModule { }
