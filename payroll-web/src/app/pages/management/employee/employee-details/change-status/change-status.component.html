@@ -1,1 +1,22 @@
-<p>change-status works!</p>
+<app-modal-dialog dialogId="changeStatusDialog" title="Change Position">
+
+  <form form [formGroup]="form" >
+    <app-form-group-check label="Status" [vertical]="true" [valid]="form.get('position')?.valid">
+      <select formControlName="status" class="form-select">
+        <option value="">Select Position</option>
+        @for (item of statuses(); track $index) {
+          <option [value]="item">{{item}}</option>
+        }
+      </select>
+    </app-form-group-check>
+    <app-form-group-check label="Remark" [vertical]="true" [valid]="form.get('remark')?.valid">
+      <textarea formControlName="remark" class="form-control"></textarea>
+    </app-form-group-check>
+  </form>
+
+  <div action>
+    <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-danger">
+      <i class="bi-save"></i> Save
+    </button>
+  </div>
+</app-modal-dialog>

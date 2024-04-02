@@ -1,10 +1,12 @@
-import { Component, computed, effect, input, signal } from '@angular/core';
+import { Component, ViewChild, computed, effect, input, signal } from '@angular/core';
 import { WidgetsModule } from '../../../../widgets/widgets.module';
 import { EmployeeService } from '../../../../services/employee.service';
 import { PositionPermissionComponent } from '../../../master/position/position-details/position-permission/position-permission.component';
 import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { EmployeeHistoryComponent } from './employee-history/employee-history.component';
 import { RouterLink } from '@angular/router';
+import { ChangePositionComponent } from './change-position/change-position.component';
+import { ChangeStatusComponent } from './change-status/change-status.component';
 
 @Component({
   selector: 'app-employee-details',
@@ -14,6 +16,8 @@ import { RouterLink } from '@angular/router';
     EmployeeInfoComponent,
     EmployeeHistoryComponent,
     PositionPermissionComponent,
+    ChangePositionComponent,
+    ChangeStatusComponent,
     RouterLink],
   templateUrl: './employee-details.component.html',
   styles: ``
@@ -27,19 +31,43 @@ export class EmployeeDetailsComponent {
 
   title = computed(() => `${this.info()?.code} - ${this.info()?.name}`)
 
-  constructor(service:EmployeeService) {
+  @ViewChild(ChangePositionComponent)
+  postionChangeDialog!:ChangePositionComponent
+
+  @ViewChild(ChangeStatusComponent)
+  statusChangeDialog!:ChangeStatusComponent
+
+  constructor(private service:EmployeeService) {
 
     effect(() => {
-      if(this.code()) {
-        service.findById(this.code()).subscribe(result => {
-          if(result.success) {
-            const {history, permissions, ...info} = result.payload
-            this.history.set(history)
-            this.permissions.set(permissions)
-            this.info.set(info)
-          }
-        })
-      }
+      this.relaod()
     })
   }
+
+  changePosition() {
+    this.postionChangeDialog.show()
+  }
+
+  changeStatus() {
+    this.statusChangeDialog.show()
+  }
+
+  onChange(event:any) {
+    if(event) {
+      this.relaod()
+    }
+  }
+
+  private relaod() {
+    if(this.code()) {
+      this.service.findById(this.code()).subscribe(result => {
+        if(result.success) {
+          const {history, permissions, ...info} = result.payload
+          this.history.set(history)
+          this.permissions.set(permissions)
+          this.info.set(info)
+        }
+      })
+    }
+}
 }

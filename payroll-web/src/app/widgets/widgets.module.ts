@@ -8,6 +8,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { InputGroupComponent } from './input-group/input-group.component';
 import { FormGroupCheckComponent } from './form-group-check/form-group-check.component';
 import { NoDataComponent } from './no-data/no-data.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NoDataComponent } from './no-data/no-data.component';
     PageTitleComponent,
     InputGroupComponent,
     FormGroupCheckComponent,
-    NoDataComponent
+    NoDataComponent,
+    ModalDialogComponent
   ],
   imports: [
     CommonModule
@@ -32,7 +34,8 @@ import { NoDataComponent } from './no-data/no-data.component';
     PageTitleComponent,
     InputGroupComponent,
     FormGroupCheckComponent,
-    NoDataComponent
+    NoDataComponent,
+    ModalDialogComponent
   ]
 })
 export class WidgetsModule { }

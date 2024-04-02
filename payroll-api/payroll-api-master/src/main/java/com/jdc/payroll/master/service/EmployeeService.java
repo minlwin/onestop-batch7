@@ -2,6 +2,7 @@ package com.jdc.payroll.master.service;
 
 import static com.jdc.payroll.utils.helpers.EntityOperationHelper.created;
 import static com.jdc.payroll.utils.helpers.EntityOperationHelper.getOne;
+import static com.jdc.payroll.utils.helpers.EntityOperationHelper.noChanges;
 import static com.jdc.payroll.utils.helpers.EntityOperationHelper.updated;
 
 import java.time.LocalDate;
@@ -81,52 +82,63 @@ public class EmployeeService {
 	public DataModificationResult<String> update(String code, EmployeeFormForUpdate form) {
 		var entity = getOne(employeeRepo.findById(code), DOMAIN_NAME, code);
 		
-		entity.getAccount().setName(form.name());
-		entity.setPhone(form.phone());
-		entity.setEmail(form.email());
-		entity.setGender(form.gender());
-		entity.setDateOfBirth(form.dob());
-		entity.setAssignDate(form.assignDate());
-		entity.setRemark(form.remark());
+		if(isNeedToChange(entity, form)) {
+			entity.getAccount().setName(form.name());
+			entity.setPhone(form.phone());
+			entity.setEmail(form.email());
+			entity.setGender(form.gender());
+			entity.setDateOfBirth(form.dob());
+			entity.setAssignDate(form.assignDate());
+			entity.setRemark(form.remark());
+			
+			entity = employeeRepo.saveAndFlush(entity);
+			publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeInfo, entity));
+			
+			return updated(code, DOMAIN_NAME);
+		}
 		
-		entity = employeeRepo.saveAndFlush(entity);
-		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeInfo, entity));
-		
-		return updated(code, DOMAIN_NAME);
+		return noChanges(code, DOMAIN_NAME);		
 	}
 	
 	public DataModificationResult<String> update(String code, EmployeeFormForUpdatePosition form) {
 		
 		var entity = getOne(employeeRepo.findById(code), DOMAIN_NAME, code);
-		var position = getOne(positionRepo.findById(PositionPk.parse(form.position())), "Position", form.position());
+		var position = getOne(positionRepo.findById(new PositionPk(form.position(), entity.getDepartment().getCode())), "Position", form.position());
 		
-		entity.setPosition(position);
-		entity.setRemark(form.remark());
-		
-		entity = employeeRepo.saveAndFlush(entity);
-		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangePosition, entity));
+		if(!entity.getPosition().getId().equals(position.getId())) {
+			entity.setPosition(position);
+			entity.setRemark(form.remark());
+			
+			entity = employeeRepo.saveAndFlush(entity);
+			publisher.publishEvent(new EmployeeChangeEvent(Type.ChangePosition, entity));
+			return updated(code, DOMAIN_NAME);
+		}
 
-		return updated(code, DOMAIN_NAME);
+		return noChanges(code, DOMAIN_NAME);
 	}
 
 	public DataModificationResult<String> update(String code, EmployeeFormForUpdateStatus form) {
 		var entity = getOne(employeeRepo.findById(code), DOMAIN_NAME, code);
 		
-		entity.setStatus(form.status());
-		entity.setRemark(form.remark());
-		
-		if(form.status() == Status.Retired) {
-			entity.setRetireDate(LocalDate.now());
-		}
-		
-		if(form.status() == Status.Permenant) {
-			entity.setProvationPassDate(LocalDate.now());
-		}
+		if(entity.getStatus() != form.status()) {
+			entity.setStatus(form.status());
+			entity.setRemark(form.remark());
+			
+			if(form.status() == Status.Retired) {
+				entity.setRetireDate(LocalDate.now());
+			}
+			
+			if(form.status() == Status.Permenant) {
+				entity.setProvationPassDate(LocalDate.now());
+			}
 
-		entity = employeeRepo.saveAndFlush(entity);
-		publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeStatus, entity));
+			entity = employeeRepo.saveAndFlush(entity);
+			publisher.publishEvent(new EmployeeChangeEvent(Type.ChangeStatus, entity));
+
+			return updated(code, DOMAIN_NAME);
+		}
 		
-		return updated(code, DOMAIN_NAME);
+		return noChanges(code, DOMAIN_NAME);
 	}
 
 	@Transactional(readOnly = true)
@@ -144,6 +156,12 @@ public class EmployeeService {
 		
 		return Pager.from(pageResult);
 	}
+	
+	@Transactional(readOnly = true)
+	public EmployeeFormForUpdate findByIdForUpdate(String code) {
+		return getOne(employeeRepo.findById(code).map(EmployeeFormForUpdate::from), DOMAIN_NAME, code);
+	}
+
 
 	private Function<CriteriaBuilder, CriteriaQuery<Long>> countFunc(EmployeeSearch search) {
 		return cb -> {
@@ -166,8 +184,15 @@ public class EmployeeService {
 		};
 	}
 
-	public EmployeeFormForUpdate findByIdForUpdate(String code) {
-		return getOne(employeeRepo.findById(code).map(EmployeeFormForUpdate::from), DOMAIN_NAME, code);
+	private boolean isNeedToChange(Employee entity, EmployeeFormForUpdate form) {
+		return !form.name().equals(entity.getAccount().getName()) 
+				|| !form.dob().equals(entity.getDateOfBirth())
+				|| !form.phone().equals(entity.getPhone())
+				|| !form.email().equals(entity.getEmail())
+				|| !form.gender().equals(entity.getGender())
+				|| !form.assignDate().equals(entity.getAssignDate())
+				|| !form.remark().equals(entity.getRemark());
 	}
+
 
 }

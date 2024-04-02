@@ -1,11 +1,11 @@
 <app-page-title icon="bi-person" [title]="title()">
 
   <div>
-    <button class="btn btn-outline-danger me-2">
+    <button (click)="changePosition()" class="btn btn-outline-danger me-2">
       <i class="bi-briefcase"></i> Change Position
     </button>
 
-    <button class="btn btn-outline-danger me-2">
+    <button (click)="changeStatus()" class="btn btn-outline-danger me-2">
       <i class="bi-shield"></i> Change Status
     </button>
 
@@ -49,3 +49,7 @@
   </section>
 
 </div>
+
+<app-change-position (onSave)="onChange($event)" [position]="info()?.position" [code]="code()" [department]="info()?.departmentCode"></app-change-position>
+
+<app-change-status (onSave)="onChange($event)" [status]="info()?.status" [code]="code()" ></app-change-status>

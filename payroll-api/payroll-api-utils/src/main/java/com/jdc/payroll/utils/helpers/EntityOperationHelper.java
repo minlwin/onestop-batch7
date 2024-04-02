@@ -21,4 +21,10 @@ public class EntityOperationHelper {
 		var message = "%s has been updated successfully!".formatted(domain);
 		return new DataModificationResult<ID>(id, message);
 	}
+	
+	public static<ID> DataModificationResult<ID> noChanges(ID id, String domain) {
+		var message = "%s does not change!".formatted(domain);
+		return new DataModificationResult<ID>(id, message);
+	}
+	
 }
