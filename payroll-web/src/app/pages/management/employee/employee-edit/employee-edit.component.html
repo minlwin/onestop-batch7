@@ -10,28 +10,39 @@
     </div>
   </div>
 
-  <div class="row mb-3">
-    <div class="col-4">
-      <app-form-group-check label="Department" [valid]="false">
-        <select formControlName="department" class="form-select">
-          <option value="">Select Department</option>
-        </select>
-      </app-form-group-check>
+  @if (!edit()) {
+    <div class="row mb-3">
+      <div class="col-4">
+        <app-form-group-check label="Department" [valid]="false">
+          <select formControlName="department" class="form-select">
+            <option value="">Select Department</option>
+            @for (item of departments(); track $index) {
+              <option [value]="item.code">{{item.name}}</option>
+            }
+          </select>
+        </app-form-group-check>
+      </div>
+      <div class="col-4">
+        <app-form-group-check label="Position" [valid]="false">
+          <select formControlName="position" class="form-select">
+            <option value="">Select Position</option>
+            @for (item of positions(); track $index) {
+              <option [value]="item.code">{{item.name}}</option>
+            }
+          </select>
+        </app-form-group-check>
+      </div>
     </div>
-    <div class="col-4">
-      <app-form-group-check label="Position" [valid]="false">
-        <select formControlName="position" class="form-select">
-          <option value="">Select Position</option>
-        </select>
-      </app-form-group-check>
-    </div>
-  </div>
+  }
 
   <div class="row mb-3">
     <div class="col-4">
       <app-form-group-check label="Gender" [valid]="false">
         <select formControlName="gender" class="form-select">
           <option value="">Select Gender</option>
+          @for (item of genders(); track $index) {
+            <option [value]="item">{{item}}</option>
+          }
         </select>
       </app-form-group-check>
     </div>
@@ -53,26 +64,40 @@
         <input formControlName="email" type="email" class="form-control" placeholder="Enter Email Address">
       </app-form-group-check>
     </div>
+
+    @if(edit()) {
+      <div class="col-4">
+        <app-form-group-check label="Assign Date" [valid]="false">
+          <input formControlName="assignDate" type="date" class="form-control" >
+        </app-form-group-check>
+      </div>
+    }
   </div>
 
-  <div class="row mb-3">
-    <div class="col-4">
-      <app-form-group-check label="Status" [valid]="false">
-        <select formControlName="status" class="form-select">
-          <option value="">Select Status</option>
-        </select>
-      </app-form-group-check>
-    </div>
-    <div class="col-4">
-      <app-form-group-check label="Assign Date" [valid]="false">
-        <input formControlName="assignDate" type="date" class="form-control" >
-      </app-form-group-check>
-    </div>
-  </div>
+  @if (!edit()) {
+    <div class="row mb-3">
+      <div class="col-4">
+        <app-form-group-check label="Status" [valid]="false">
+          <select formControlName="status" class="form-select">
+            <option value="">Select Status</option>
+            @for (item of statusList(); track $index) {
+              <option [value]="item">{{item}}</option>
+            }
+          </select>
+        </app-form-group-check>
+      </div>
 
-  <app-form-group-check label="Remark" [valid]="false" [vertical]="true">
+      <div class="col-4">
+        <app-form-group-check label="Assign Date" [valid]="false">
+          <input formControlName="assignDate" type="date" class="form-control" >
+        </app-form-group-check>
+      </div>
+    </div>
+    }
+
+  <app-form-group label="Remark" [vertical]="true">
     <textarea formControlName="remark" class="form-control"></textarea>
-  </app-form-group-check>
+  </app-form-group>
 
   <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-primary">
     <i class="bi-save"></i> Save

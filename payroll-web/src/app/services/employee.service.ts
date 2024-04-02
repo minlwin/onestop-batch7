@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from '../model/api-response';
 
-const BASE_URL = `${environment}/employee`
+const BASE_URL = `${environment.baseUrl}/employee`
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,12 @@ export class EmployeeService {
     return this.http.get<ApiResponse>(`${BASE_URL}/${code}`)
   }
 
+  findByIdForUpdate(code:string) {
+    return this.http.get<ApiResponse>(`${BASE_URL}/${code}/update`)
+  }
+
   create(form:any) {
+    console.log(form)
     return this.http.post<ApiResponse>(BASE_URL, form)
   }
 

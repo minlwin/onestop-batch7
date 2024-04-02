@@ -25,6 +25,10 @@ public record EmployeeHistoryInfo(
 		LocalDate provationPassDate,
 		LocalDate retiredDate,
 		String remark) {
+	
+	public String getChangeTypeName() {
+		return changeType.getDesplayName();
+	}
 
 	public static EmployeeHistoryInfo from(EmployeeHistory entity) {
 		return new EmployeeHistoryInfo(

@@ -23,7 +23,8 @@ public record EmployeeInfoDetails(
 		LocalDate provationPassAt,
 		LocalDate retiredAt,
 		String remark,
-		List<EmployeeHistoryInfo> history) {
+		List<EmployeeHistoryInfo> history,
+		List<PermissionInfo> permissions) {
 	
 	public String getPositionName() {
 		return position.getValue();
@@ -45,6 +46,7 @@ public record EmployeeInfoDetails(
 			entity.getProvationPassDate(),
 			entity.getRetireDate(), 
 			entity.getRemark(),
-			entity.getHistory().stream().map(EmployeeHistoryInfo::from).toList());
+			entity.getHistory().stream().map(EmployeeHistoryInfo::from).toList(),
+			entity.getPosition().getPermissions().stream().map(PermissionInfo::from).toList());
 	}
 }

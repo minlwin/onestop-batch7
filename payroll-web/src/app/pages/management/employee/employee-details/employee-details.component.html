@@ -1,1 +1,51 @@
-<p>employee-details works!</p>
+<app-page-title icon="bi-person" [title]="title()">
+
+  <div>
+    <button class="btn btn-outline-danger me-2">
+      <i class="bi-briefcase"></i> Change Position
+    </button>
+
+    <button class="btn btn-outline-danger me-2">
+      <i class="bi-shield"></i> Change Status
+    </button>
+
+    <a [routerLink]="['../', 'edit']" [queryParams]="{code : code()}" class="btn btn-outline-danger">
+      <i class="bi-pencil"></i> Edit Employee
+    </a>
+  </div>
+</app-page-title>
+
+<ul class="nav nav-underline">
+  <li class="nav-item">
+    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#information">
+      <i class="bi-info-circle"></i> Personal Information
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link"  data-bs-toggle="tab" data-bs-target="#history">
+      <i class="bi-calendar-event"></i> Changes History
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#permissions">
+      <i class="bi-calendar-event"></i> Permissions
+    </a>
+  </li>
+
+</ul>
+
+<div class="mt-3 tab-content">
+
+  <section class="tab-pane fade show active" id="information">
+    <app-employee-info [employee]="info()"></app-employee-info>
+  </section>
+  <section class="tab-pane fade" id="history">
+    <app-employee-history [list]="history()"></app-employee-history>
+  </section>
+  <section class="tab-pane fade" id="permissions">
+    <app-position-permission [list]="permissions()"></app-position-permission>
+  </section>
+
+</div>

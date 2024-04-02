@@ -15,10 +15,12 @@
 
 .sidebar.show {
   width: 320px;
+  min-width: 320px;
 }
 
 .sidebar.hide {
   width: 60px;
+  min-width: 60px;
   text-align: center;
 }
 
@@ -53,5 +55,13 @@ app-root {
 
 .checkbox-column {
   width: 120px;
+}
+
+.big-table {
+  overflow: auto;
+}
+
+.big-table>table {
+  width: max-content !important;
 }
 

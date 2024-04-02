@@ -2,6 +2,7 @@ package com.jdc.payroll.master.input;
 
 import java.time.LocalDate;
 
+import com.jdc.payroll.domain.master.entity.Employee;
 import com.jdc.payroll.domain.master.entity.Employee.Gender;
 
 import jakarta.validation.constraints.NotBlank;
@@ -22,4 +23,14 @@ public record EmployeeFormForUpdate(
 		LocalDate assignDate,
 		String remark) {
 
+	public static EmployeeFormForUpdate from(Employee entity) {
+		return new EmployeeFormForUpdate(
+				entity.getAccount().getName(), 
+				entity.getPhone(), 
+				entity.getEmail(), 
+				entity.getGender(), 
+				entity.getDateOfBirth(), 
+				entity.getAssignDate(), 
+				entity.getRemark());
+	}
 }

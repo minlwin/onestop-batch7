@@ -67,4 +67,8 @@ public class EmployeeApi {
 		return ApiResponse.success(service.findById(code));
 	}
 	
+	@GetMapping("{code}/update")
+	ApiResponse<EmployeeFormForUpdate> findByIdForUpdate(@PathVariable String code) {
+		return ApiResponse.success(service.findByIdForUpdate(code));
+	}
 }

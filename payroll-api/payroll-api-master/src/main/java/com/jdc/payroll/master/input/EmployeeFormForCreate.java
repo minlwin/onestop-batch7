@@ -7,8 +7,8 @@ import com.jdc.payroll.domain.master.entity.Account.Role;
 import com.jdc.payroll.domain.master.entity.Employee;
 import com.jdc.payroll.domain.master.entity.Employee.Gender;
 import com.jdc.payroll.domain.master.entity.Employee.Status;
+import com.jdc.payroll.domain.master.entity.PositionPk.PositionCode;
 import com.jdc.payroll.master.validators.DepartmentCodeForValid;
-import com.jdc.payroll.master.validators.PositionCodeForValid;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,8 +18,8 @@ public record EmployeeFormForCreate(
 		String name,
 		@DepartmentCodeForValid
 		String department,
-		@PositionCodeForValid
-		String position,
+		@NotNull(message = "Please select position.")
+		PositionCode position,
 		@NotBlank(message = "Please enter phone.")
 		String phone,
 		@NotBlank(message = "Please enter email.")

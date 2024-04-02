@@ -63,7 +63,10 @@ public class EmployeeService {
 		
 		var entity = form.entity(code, password);
 		var depertment = getOne(departmentRepo.findById(form.department()), "Department", form.department());
-		var position = getOne(positionRepo.findById(PositionPk.parse(form.position())), "Position", form.position());
+		var position = getOne(
+				positionRepo.findById(new PositionPk(form.position(), form.department())), 
+				"Position", 
+				form.position());
 		
 		entity.setDepartment(depertment);
 		entity.setPosition(position);
@@ -161,6 +164,10 @@ public class EmployeeService {
 			cq.orderBy(cb.asc(root.get(Employee_.code)));
 			return cq;
 		};
+	}
+
+	public EmployeeFormForUpdate findByIdForUpdate(String code) {
+		return getOne(employeeRepo.findById(code).map(EmployeeFormForUpdate::from), DOMAIN_NAME, code);
 	}
 
 }
