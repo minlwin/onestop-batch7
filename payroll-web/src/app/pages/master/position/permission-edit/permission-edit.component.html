@@ -1,1 +1,40 @@
-<p>permission-edit works!</p>
+<app-page-title icon="bi-shield" [title]="title()">
+</app-page-title>
+
+<form [formGroup]="form">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+        <th class="text-center checkbox-column">Read</th>
+        <th class="text-center checkbox-column">Write</th>
+        <th class="text-center checkbox-column">Modify</th>
+      </tr>
+    </thead>
+
+    <tbody formArrayName="permissions">
+      @for (item of permissions.controls; track $index) {
+        <tr [formGroupName]="$index">
+          <td>{{permissions.controls[$index].get('resource')?.value}}</td>
+          <td>{{permissions.controls[$index].get('description')?.value}}</td>
+          <td class="text-center">
+            <input formControlName="read" type="checkbox" class="form-check-input">
+          </td>
+          <td class="text-center">
+            <input formControlName="write" type="checkbox" class="form-check-input">
+          </td>
+          <td class="text-center">
+            <input formControlName="modify" type="checkbox" class="form-check-input">
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="text-end">
+    <button (click)="save()" type="button" class="btn btn-outline-danger">
+      <i class="bi-save"></i> Save Permission
+    </button>
+  </div>
+</form>

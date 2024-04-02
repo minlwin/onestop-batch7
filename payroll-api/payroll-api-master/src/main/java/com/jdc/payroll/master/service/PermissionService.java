@@ -25,7 +25,7 @@ public class PermissionService {
 		
 		var possitionId = PositionPk.parse(form.posigionId());
 		
-		for(var item : form.items()) {
+		for(var item : form.permissions()) {
 			var pk = new PermissionsPk();
 			pk.setDepartmentCode(possitionId.getDepartmentCode());
 			pk.setPositionCode(possitionId.getPositionCode());
@@ -38,7 +38,7 @@ public class PermissionService {
 			permission.setModify(item.modify());
 		}
 		
-		return new DataModificationResult<Integer>(form.items().size(), "%d permissions has been updated.".formatted(form.items().size()));
+		return new DataModificationResult<Integer>(form.permissions().size(), "%d permissions has been updated.".formatted(form.permissions().size()));
 	}
 
 }

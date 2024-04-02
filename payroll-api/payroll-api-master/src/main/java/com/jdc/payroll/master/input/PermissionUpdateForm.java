@@ -9,7 +9,7 @@ public record PermissionUpdateForm(
 		@NotEmpty(message = "Please select position.")
 		String posigionId,
 		@NotEmpty
-		List<@Valid PermissionUpdateItem> items
+		List<@Valid PermissionUpdateItem> permissions
 		) {
 
 }
