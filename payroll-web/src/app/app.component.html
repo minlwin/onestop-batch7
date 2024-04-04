@@ -11,7 +11,7 @@
       </h5>
     </div>
 
-    @if ((anonymous() && expended()) || !showMenu()) {
+    @if ((anonymous() || !showMenu()) && expended()) {
       <div class="px-3">
         <div class="alert alert-light">Welcome!</div>
         @if (anonymous()) {
