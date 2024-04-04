@@ -30,11 +30,13 @@
     </a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#permissions">
-      <i class="bi-calendar-event"></i> Permissions
-    </a>
-  </li>
+  @if (permissionRead) {
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#permissions">
+        <i class="bi-calendar-event"></i> Permissions
+      </a>
+    </li>
+  }
 
 </ul>
 
@@ -46,12 +48,17 @@
   <section class="tab-pane fade" id="history">
     <app-employee-history [list]="history()"></app-employee-history>
   </section>
-  <section class="tab-pane fade" id="permissions">
-    <app-position-permission [list]="permissions()"></app-position-permission>
-  </section>
+
+  @if (permissionRead) {
+    <section class="tab-pane fade" id="permissions">
+      <app-position-permission [list]="permissions()"></app-position-permission>
+    </section>
+  }
 
 </div>
 
-<app-change-position (onSave)="onChange($event)" [position]="info()?.position" [code]="code()" [department]="info()?.departmentCode"></app-change-position>
+@if (modify) {
+  <app-change-position (onSave)="onChange($event)" [position]="info()?.position" [code]="code()" [department]="info()?.departmentCode"></app-change-position>
+  <app-change-status (onSave)="onChange($event)" [status]="info()?.status" [code]="code()" ></app-change-status>
+}
 
-<app-change-status (onSave)="onChange($event)" [status]="info()?.status" [code]="code()" ></app-change-status>

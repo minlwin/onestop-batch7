@@ -6,6 +6,8 @@ import { WidgetsModule } from '../../../../widgets/widgets.module';
 import { PositionInfoComponent } from './position-info/position-info.component';
 import { PositionPermissionComponent } from './position-permission/position-permission.component';
 import { PositionEmployeesComponent } from './position-employees/position-employees.component';
+import { MenusService } from '../../../../services/menus.service';
+import { AbstractComponent } from '../../../../model/abstract.component';
 
 @Component({
   selector: 'app-position-details',
@@ -19,13 +21,17 @@ import { PositionEmployeesComponent } from './position-employees/position-employ
   templateUrl: './position-details.component.html',
   styles: ``
 })
-export class PositionDetailsComponent {
+export class PositionDetailsComponent extends AbstractComponent{
 
   id = input.required<string>()
   data = signal<any>(undefined)
   title = computed(() => this.data() ? this.data().displayName : 'Position Details')
 
-  constructor(service:PositionService) {
+  override resource: string = "position";
+
+  constructor(service:PositionService, menuService:MenusService) {
+
+    super(menuService)
 
     effect(() => {
       if(this.id()) {

@@ -11,13 +11,13 @@ import lombok.Data;
 
 @Data
 @JsonTypeInfo(
-		use = Id.NAME, include = As.EXISTING_PROPERTY, property = "type", visible = true
-	)
-	@JsonSubTypes({
-		@JsonSubTypes.Type(value = AllowanceInfoForFix.class, name = "Fix"),
-		@JsonSubTypes.Type(value = AllowanceInfoForPercent.class, name = "Percent"),
-		@JsonSubTypes.Type(value = AllowanceInfoForTeir.class, name = "Tier"),	
-	})
+	use = Id.NAME, include = As.EXISTING_PROPERTY, property = "type", visible = true
+)
+@JsonSubTypes({
+	@JsonSubTypes.Type(value = AllowanceInfoForFix.class, name = "Fix"),
+	@JsonSubTypes.Type(value = AllowanceInfoForPercent.class, name = "Percent"),
+	@JsonSubTypes.Type(value = AllowanceInfoForTeir.class, name = "Tier"),	
+})
 public abstract class AllowanceInfo {
 
 	private int id;

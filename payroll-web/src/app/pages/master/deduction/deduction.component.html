@@ -1,15 +1,20 @@
 <app-list-view icon="bi-envelope-exclamation" title="Deduction Management">
   <div controlsBtns>
-    <!-- Export Button -->
-    <a class="btn btn-outline-primary">
-      <i class="bi-plus-lg"></i> Create
-    </a>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-down-square"></i> Import
-    </button>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-up-square"></i> Export
-    </button>
+    @if (write) {
+      <!-- Export Button -->
+      <a class="btn btn-outline-primary">
+        <i class="bi-plus-lg"></i> Create
+      </a>
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-down-square"></i> Import
+      </button>
+    }
+
+    @if (write && modify) {
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-up-square"></i> Export
+      </button>
+    }
   </div>
 
   <form searchForm action="#" class="row">

@@ -14,4 +14,11 @@ export abstract class AbstractComponent {
     return this.menuService.canModify(this.resource)
   }
 
+  get permissionRead():boolean {
+    return this.menuService.canRead('permission')
+  }
+
+  get permissionModify():boolean {
+    return this.menuService.canModify('permission')
+  }
 }

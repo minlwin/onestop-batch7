@@ -1,14 +1,22 @@
 <app-page-title icon="bi-briefcase" [title]="title()">
   <div>
-    <a [routerLink]="['../', 'permission']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
-      <i class="bi-pencil"></i> Edit Permission
-    </a>
-    <a [routerLink]="['../', 'edit']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
-      <i class="bi-pencil"></i> Edit Position
-    </a>
-    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
-      <i class="bi-plus-lg"></i> Add New
-    </a>
+    @if (permissionModify) {
+      <a [routerLink]="['../', 'permission']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
+        <i class="bi-pencil"></i> Edit Permission
+      </a>
+    }
+
+    @if (modify) {
+      <a [routerLink]="['../', 'edit']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
+        <i class="bi-pencil"></i> Edit Position
+      </a>
+    }
+
+    @if (write) {
+      <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
+        <i class="bi-plus-lg"></i> Add New
+      </a>
+    }
   </div>
 </app-page-title>
 
@@ -23,11 +31,14 @@
       <i class="bi-people"></i> Employees
     </a>
   </li>
-  <li class="nav-item">
-    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#permissions">
-      <i class="bi-shield-check"></i> Permissions
-    </a>
-  </li>
+
+  @if (permissionRead) {
+    <li class="nav-item">
+      <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#permissions">
+        <i class="bi-shield-check"></i> Permissions
+      </a>
+    </li>
+  }
 </ul>
 
 <div class="tab-content pt-3">
@@ -37,8 +48,11 @@
   <div class="tab-pane fade" id="employees">
     <app-position-employees [list]="data()?.employees || []"></app-position-employees>
   </div>
-  <div class="tab-pane fade" id="permissions">
-    <app-position-permission [list]="data()?.permission || []"></app-position-permission>
-  </div>
+
+  @if (permissionRead) {
+    <div class="tab-pane fade" id="permissions">
+      <app-position-permission [list]="data()?.permission || []"></app-position-permission>
+    </div>
+  }
 </div>
 

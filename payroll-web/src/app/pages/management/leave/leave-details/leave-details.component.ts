@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AbstractComponent } from '../../../../model/abstract.component';
+import { MenusService } from '../../../../services/menus.service';
 
 @Component({
   selector: 'app-leave-details',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
   templateUrl: './leave-details.component.html',
   styles: ``
 })
-export class LeaveDetailsComponent {
+export class LeaveDetailsComponent extends AbstractComponent{
 
+  override resource: string = "leave";
+
+  constructor(menuService:MenusService) {
+    super(menuService)
+  }
 }

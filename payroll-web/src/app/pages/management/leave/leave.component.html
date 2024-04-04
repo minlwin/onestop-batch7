@@ -1,14 +1,19 @@
 <app-list-view icon="bi-calendar-minus" title="Leave Management">
 
   <div controlsBtns>
-    <!-- Create Button -->
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-plus-lg"></i> Create
-    </button>
-    <!-- Export Button -->
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-up-square"></i> Export
-    </button>
+    @if (write) {
+      <!-- Create Button -->
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-plus-lg"></i> Create
+      </button>
+    }
+
+    @if (write && modify) {
+      <!-- Export Button -->
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-up-square"></i> Export
+      </button>
+    }
   </div>
 
   <form searchForm action="#" class="row">

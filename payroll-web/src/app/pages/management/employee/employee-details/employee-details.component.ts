@@ -34,10 +34,10 @@ export class EmployeeDetailsComponent extends AbstractComponent{
   title = computed(() => `${this.info()?.code} - ${this.info()?.name}`)
 
   @ViewChild(ChangePositionComponent)
-  postionChangeDialog!:ChangePositionComponent
+  postionChangeDialog?:ChangePositionComponent
 
   @ViewChild(ChangeStatusComponent)
-  statusChangeDialog!:ChangeStatusComponent
+  statusChangeDialog?:ChangeStatusComponent
 
   override resource: string = "employee";
 
@@ -51,11 +51,11 @@ export class EmployeeDetailsComponent extends AbstractComponent{
   }
 
   changePosition() {
-    this.postionChangeDialog.show()
+    this.postionChangeDialog?.show()
   }
 
   changeStatus() {
-    this.statusChangeDialog.show()
+    this.statusChangeDialog?.show()
   }
 
   onChange(event:any) {
