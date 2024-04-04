@@ -1,8 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SecurityContextService } from './services/security-context.service';
-import menus from '../assets/model/menu-model.json'
 import { MenuGroup } from './model/menu.model';
+import { MenusService } from './services/menus.service';
 
 @Component({
   selector: 'app-root',
@@ -13,25 +13,28 @@ import { MenuGroup } from './model/menu.model';
 })
 export class AppComponent {
 
-  menus = signal<MenuGroup[]>(menus)
+  menus = computed<MenuGroup[]>(() => {
+    if(this.security.activated()) {
+      return this.menuService.getMenu()
+    }
+
+    return []
+  })
 
   anonymous = computed(() => !this.security.loginUser())
   activated = computed(() => this.security.loginUser()?.activated)
 
-  showMenu = signal<boolean>(true)
+  showMenu = computed<boolean | undefined>(() => !this.anonymous() && this.activated())
+  expended = signal<boolean>(true)
 
   constructor(
+    private menuService:MenusService,
     private security:SecurityContextService,
     private router:Router) {
-    if(security.loginUser()) {
-      if(security.loginUser()?.activated) {
-
-      } else {
-        router.navigate(['/change-pass'])
-      }
-    } else {
+    if(!security.loginUser()) {
       router.navigate(['/signin'])
     }
+
   }
 
   signOut() {
@@ -40,6 +43,6 @@ export class AppComponent {
   }
 
   toggleMenu() {
-    this.showMenu.update(state => !state)
+    this.expended.update(state => !state)
   }
 }

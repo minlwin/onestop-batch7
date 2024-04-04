@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { WidgetsModule } from '../../widgets/widgets.module';
+import { WidgetsModule } from '../../../widgets/widgets.module';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignInService } from '../../services/sign-in.service';
-import { SecurityContextService } from '../../services/security-context.service';
+import { SignInService } from '../../../services/sign-in.service';
+import { SecurityContextService } from '../../../services/security-context.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +33,11 @@ export class SigninComponent {
         console.log(result)
         if(result.success) {
           this.security.loginUser.set(result.payload)
-          this.router.navigate(['/home'])
+          if(this.security.activated()) {
+            this.router.navigate(['/home'])
+          } else {
+            this.router.navigate(['/change-pass'])
+          }
         }
       })
     }

@@ -1,4 +1,4 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, computed, effect, signal } from '@angular/core';
 
 const LOGIN_USER_KEY = "com.jdc.payroll.user"
 
@@ -8,6 +8,7 @@ const LOGIN_USER_KEY = "com.jdc.payroll.user"
 export class SecurityContextService {
 
   loginUser = signal<User>(undefined)
+  activated = computed(() => this.loginUser()?.activated)
 
   constructor() {
     try {
@@ -27,7 +28,6 @@ export class SecurityContextService {
     } catch (error) {
     }
   }
-
 }
 
 type User = LoginUser | undefined

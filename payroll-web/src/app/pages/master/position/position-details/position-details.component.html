@@ -3,8 +3,11 @@
     <a [routerLink]="['../', 'permission']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
       <i class="bi-pencil"></i> Edit Permission
     </a>
-    <a [routerLink]="['../', 'edit']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary">
+    <a [routerLink]="['../', 'edit']" [queryParams]="{code: data()?.id.code}" class="btn btn-outline-primary me-2">
       <i class="bi-pencil"></i> Edit Position
+    </a>
+    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
+      <i class="bi-plus-lg"></i> Add New
     </a>
   </div>
 </app-page-title>

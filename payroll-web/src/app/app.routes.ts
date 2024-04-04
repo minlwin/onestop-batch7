@@ -23,17 +23,17 @@ import { DepartmentEditComponent } from './pages/master/department/department-ed
 import { DepartmentDetailsComponent } from './pages/master/department/department-details/department-details.component';
 import { SettingsComponent } from './pages/setting/settings/settings.component';
 import { SettingsEditComponent } from './pages/setting/settings/settings-edit/settings-edit.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { ChangePasswordComponent } from './pages/setting/change-password/change-password.component';
+import { SigninComponent } from './pages/security/signin/signin.component';
 import { PositionDetailsComponent } from './pages/master/position/position-details/position-details.component';
 import { LeaveTypeComponent } from './pages/setting/leave-type/leave-type.component';
 import { LeaveTypeEditComponent } from './pages/setting/leave-type/leave-type-edit/leave-type-edit.component';
 import { PermissionEditComponent } from './pages/master/position/permission-edit/permission-edit.component';
+import { ChangePassComponent } from './pages/security/change-pass/change-pass.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'change-pass', component: ChangePasswordComponent},
+  {path: 'change-pass', component: ChangePassComponent},
   {path: 'management', children: [
     {path: 'employee', children: [
       {path: 'list', component: EmployeeComponent},

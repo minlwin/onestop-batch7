@@ -33,7 +33,7 @@
   </table>
 
   <div class="text-end">
-    <button (click)="save()" type="button" class="btn btn-outline-danger">
+    <button (click)="save()" type="button" class="btn btn-outline-danger" [class.disabled]="!form.valid" >
       <i class="bi-save"></i> Save Permission
     </button>
   </div>

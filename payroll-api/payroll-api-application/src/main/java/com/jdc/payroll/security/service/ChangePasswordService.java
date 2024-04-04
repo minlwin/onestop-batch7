@@ -28,7 +28,7 @@ public class ChangePasswordService {
 	private AccountRepo repo;
 
 	@Transactional
-	@PreAuthorize("authenticated()")
+	@PreAuthorize("isFullyAuthenticated()")
 	public DataModificationResult<String> change(ChangePasswordForm form) {
 		
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -41,6 +41,10 @@ public class ChangePasswordService {
 		}
 		
 		account.setPassword(encoder.encode(form.newPass()));
+		
+		if(!account.isActivated()) {
+			account.setActivated(true);
+		}
 		
 		return new DataModificationResult<String>(username, "Your password has been changed successfully!");
 	}

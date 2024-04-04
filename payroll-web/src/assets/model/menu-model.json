@@ -1,11 +1,11 @@
 [
   {
-    "title" : "",
+    "title" : "User Functions",
     "items" : [
-      {"type" : "personal", "name" : "Home", "path" : "/home"},
-      {"type" : "personal", "name" : "Attendance", "path" : "/attendance"},
-      {"type" : "personal", "name" : "Leave", "path" : "/leave"},
-      {"type" : "personal", "name" : "Payroll", "path" : "/payroll"}
+      {"type" : "personal data", "name" : "Home", "path" : "/home"},
+      {"type" : "personal data", "name" : "Attendance", "path" : "/attendance"},
+      {"type" : "personal data", "name" : "Leave", "path" : "/leave"},
+      {"type" : "personal data", "name" : "Payroll", "path" : "/payroll"}
     ]
   },
   {
@@ -30,7 +30,7 @@
     "title" : "Settings",
     "items" : [
       {"type" : "holiday", "name" : "Holidays", "path" : "/settings/holiday"},
-      {"type" : "leave-type", "name" : "Leave Types", "path" : "/settings/leave-type"},
+      {"type" : "leave type", "name" : "Leave Types", "path" : "/settings/leave-type"},
       {"type" : "setting", "name" : "System Settings", "path" : "/settings/system-setting"}
     ]
   }

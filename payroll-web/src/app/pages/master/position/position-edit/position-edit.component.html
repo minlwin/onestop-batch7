@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <button (click)="save()" type="button" class="btn btn-outline-primary">
+  <button (click)="save()" [class.disabled]="!form.valid" type="button" class="btn btn-outline-primary">
     <i class="bi-save"></i> Save
   </button>
 </form>

@@ -1,9 +1,9 @@
 <div class="d-flex align-content-stretch w-100">
 
-  <div class="sidebar shadow" [class.show]="showMenu()" [class.hide]="!showMenu()">
+  <div class="sidebar shadow" [class.show]="expended()" [class.hide]="!expended()">
     <div class="p-3">
       <h5 (click)="toggleMenu()">
-        @if (showMenu()) {
+        @if (expended()) {
           <i class="bi-arrow-left"></i> Payroll Management
         } @else {
           <i class="bi-arrow-right"></i>
@@ -11,14 +11,26 @@
       </h5>
     </div>
 
-    @if (anonymous() && showMenu()) {
+    @if ((anonymous() && expended()) || !showMenu()) {
       <div class="px-3">
         <div class="alert alert-light">Welcome!</div>
-        <p>Please sign in to use payroll management system.</p>
+        @if (anonymous()) {
+          <p>Please sign in to use payroll management system.</p>
+        }
+
+        @if (!anonymous() && !activated()) {
+          <p>Please change your password before using application.</p>
+
+          <ul class="sidemenu">
+            <li>
+              <a (click)="signOut()" href="#">Sign Out</a>
+            </li>
+          </ul>
+        }
       </div>
     }
 
-    @if (!anonymous() && showMenu()) {
+    @if (expended() && showMenu()) {
       <div class="px-3">
         @for (group of menus(); track $index) {
           @if (group.title) {
