@@ -1,16 +1,22 @@
 <app-list-view icon="bi-calendar-heart" [pager]="page()" title="Holiday Setting">
 
   <div controlsBtns>
-    <!-- Export Button -->
-    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
-      <i class="bi-plus-lg"></i> Create
-    </a>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-down-square"></i> Import
-    </button>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-up-square"></i> Export
-    </button>
+
+    @if (write) {
+      <!-- Export Button -->
+      <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
+        <i class="bi-plus-lg"></i> Create
+      </a>
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-down-square"></i> Import
+      </button>
+    }
+
+    @if (write && modify) {
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-up-square"></i> Export
+      </button>
+    }
   </div>
 
   <form [formGroup]="form" searchForm action="#" class="row">
@@ -51,7 +57,9 @@
         <th>Type</th>
         <th>Holiday</th>
         <th>Description</th>
-        <th></th>
+        @if (modify) {
+          <th></th>
+        }
       </tr>
     </thead>
 
@@ -62,11 +70,13 @@
           <td>{{item.type}}</td>
           <td>{{item.holiday}}</td>
           <td>{{item.remark}}</td>
-          <td class="text-center">
-            <a [routerLink]="['../', 'edit']" [queryParams]="{date: item.date }" class="icon-link">
-              <i class="bi-send"></i>
-            </a>
-          </td>
+          @if (modify) {
+            <td class="text-center">
+              <a [routerLink]="['../', 'edit']" [queryParams]="{date: item.date }" class="icon-link">
+                <i class="bi-send"></i>
+              </a>
+            </td>
+          }
         </tr>
       }
     </tbody>

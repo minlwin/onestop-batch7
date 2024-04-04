@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Pager } from '../../../model/pager.model';
 import { LeaveTypeService } from '../../../services/leave-type.service';
 import { RouterLink } from '@angular/router';
+import { MenusService } from '../../../services/menus.service';
+import { AbstractComponent } from '../../../model/abstract.component';
 
 @Component({
   selector: 'app-leave-type',
@@ -12,13 +14,18 @@ import { RouterLink } from '@angular/router';
   templateUrl: './leave-type.component.html',
   styles: ``
 })
-export class LeaveTypeComponent {
+export class LeaveTypeComponent extends AbstractComponent{
 
   form:FormGroup
   list = signal<any[]>([])
   page = signal<Pager | undefined>(undefined)
 
-  constructor(builder:FormBuilder, private service:LeaveTypeService) {
+  override resource: string = "leave type";
+
+  constructor(builder:FormBuilder, private service:LeaveTypeService, menuService:MenusService) {
+
+    super(menuService)
+
     this.form = builder.group({
       name: ''
     })

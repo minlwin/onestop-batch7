@@ -1,18 +1,23 @@
 <app-list-view icon="bi-people" [pager]="page()" title="Employee Management">
 
   <div controlsBtns>
-    <!-- Create Button -->
-    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary ms-2">
-      <i class="bi-plus-lg"></i> Create
-    </a>
-    <!-- Import Button -->
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-down-square"></i> Import
-    </button>
-    <!-- Export Button -->
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-up-square"></i> Export
-    </button>
+    @if (write) {
+      <!-- Create Button -->
+      <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary ms-2">
+        <i class="bi-plus-lg"></i> Create
+      </a>
+      <!-- Import Button -->
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-down-square"></i> Import
+      </button>
+    }
+
+    @if(write && modify) {
+      <!-- Export Button -->
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-up-square"></i> Export
+      </button>
+    }
   </div>
 
   <form searchForm [formGroup]="form" class="row">

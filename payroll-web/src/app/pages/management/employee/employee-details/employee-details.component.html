@@ -1,18 +1,20 @@
 <app-page-title icon="bi-person" [title]="title()">
 
-  <div>
-    <button (click)="changePosition()" class="btn btn-outline-danger me-2">
-      <i class="bi-briefcase"></i> Change Position
-    </button>
+  @if (modify) {
+    <div>
+      <button (click)="changePosition()" class="btn btn-outline-danger me-2">
+        <i class="bi-briefcase"></i> Change Position
+      </button>
 
-    <button (click)="changeStatus()" class="btn btn-outline-danger me-2">
-      <i class="bi-shield"></i> Change Status
-    </button>
+      <button (click)="changeStatus()" class="btn btn-outline-danger me-2">
+        <i class="bi-shield"></i> Change Status
+      </button>
 
-    <a [routerLink]="['../', 'edit']" [queryParams]="{code : code()}" class="btn btn-outline-danger">
-      <i class="bi-pencil"></i> Edit Employee
-    </a>
-  </div>
+      <a [routerLink]="['../', 'edit']" [queryParams]="{code : code()}" class="btn btn-outline-danger">
+        <i class="bi-pencil"></i> Edit Employee
+      </a>
+    </div>
+  }
 </app-page-title>
 
 <ul class="nav nav-underline">

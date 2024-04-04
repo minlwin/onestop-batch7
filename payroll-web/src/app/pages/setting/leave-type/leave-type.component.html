@@ -2,15 +2,20 @@
 
   <div controlsBtns>
     <!-- Export Button -->
-    <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
-      <i class="bi-plus-lg"></i> Create
-    </a>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-down-square"></i> Import
-    </button>
-    <button class="btn btn-outline-primary ms-2">
-      <i class="bi-arrow-up-square"></i> Export
-    </button>
+    @if (write) {
+      <a [routerLink]="['../', 'edit']" class="btn btn-outline-primary">
+        <i class="bi-plus-lg"></i> Create
+      </a>
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-down-square"></i> Import
+      </button>
+    }
+
+    @if (write && modify) {
+      <button class="btn btn-outline-primary ms-2">
+        <i class="bi-arrow-up-square"></i> Export
+      </button>
+    }
   </div>
 
   <form searchForm [formGroup]="form" class="row">
@@ -35,7 +40,9 @@
           <th>Name</th>
           <th>Paid Leaves</th>
           <th>Description</th>
-          <th></th>
+          @if (modify) {
+            <th></th>
+          }
         </tr>
       </thead>
 
@@ -46,11 +53,13 @@
             <td>{{item.name}}</td>
             <td>{{item.paidDays}}</td>
             <td>{{item.remark}}</td>
-            <td class="text-center">
-              <a [routerLink]="['../', 'edit']" [queryParams]="{id: item.id}" class="btn-link">
-                <i class="bi-pencil"></i>
-              </a>
-            </td>
+            @if (modify) {
+              <td class="text-center">
+                <a [routerLink]="['../', 'edit']" [queryParams]="{id: item.id}" class="btn-link">
+                  <i class="bi-pencil"></i>
+                </a>
+              </td>
+            }
           </tr>
         }
       </tbody>

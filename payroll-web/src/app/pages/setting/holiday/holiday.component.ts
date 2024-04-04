@@ -6,6 +6,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Pager } from '../../../model/pager.model';
 import { HolidayService } from '../../../services/holiday.service';
+import { MenusService } from '../../../services/menus.service';
+import { AbstractComponent } from '../../../model/abstract.component';
+
+const RESOURCE = 'holiday'
 
 @Component({
   selector: 'app-holiday',
@@ -14,7 +18,7 @@ import { HolidayService } from '../../../services/holiday.service';
   templateUrl: './holiday.component.html',
   styles: ``
 })
-export class HolidayComponent {
+export class HolidayComponent extends AbstractComponent{
 
   types = signal<HolidayType[]>(HOLIDAY_TYPES)
 
@@ -23,7 +27,12 @@ export class HolidayComponent {
   list = signal<any[]>([])
   page = signal<Pager | undefined>(undefined)
 
-  constructor(builder:FormBuilder, private service:HolidayService) {
+  override resource: string = RESOURCE;
+
+  constructor(builder:FormBuilder, private service:HolidayService, menuService:MenusService) {
+
+    super(menuService)
+
     this.form = builder.group({
       type: '',
       from: '',

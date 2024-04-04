@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeService } from '../../../services/employee.service';
 import { Pager } from '../../../model/pager.model';
 import { RouterLink } from '@angular/router';
+import { AbstractComponent } from '../../../model/abstract.component';
+import { MenusService } from '../../../services/menus.service';
 
 @Component({
   selector: 'app-employee',
@@ -13,13 +15,17 @@ import { RouterLink } from '@angular/router';
   templateUrl: './employee.component.html',
   styles: ``
 })
-export class EmployeeComponent {
+export class EmployeeComponent extends AbstractComponent{
 
   form:FormGroup
   list = signal<any[]>([])
   page = signal<Pager | undefined>(undefined)
 
-  constructor(builder:FormBuilder, private service:EmployeeService) {
+  override resource: string = "employee";
+
+  constructor(builder:FormBuilder, private service:EmployeeService, menuService:MenusService) {
+
+    super(menuService)
     this.form = builder.group({
       department: '',
       position: '',

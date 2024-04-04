@@ -38,6 +38,30 @@ export class MenusService {
     return this.getEmployeeMenu()
   }
 
+  canRead(resource:string) {
+    const map = this.permissions()
+    if(map) {
+      return map[resource]?.read
+    }
+    return false
+  }
+
+  canWrite(resource:string) {
+    const map = this.permissions()
+    if(map) {
+      return map[resource]?.write
+    }
+    return false
+  }
+
+  canModify(resource:string) {
+    const map = this.permissions()
+    if(map) {
+      return map[resource]?.modify
+    }
+    return false
+  }
+
   private isAdmin(authorities:string[]):boolean {
     return authorities.filter(a => a == 'Admin').pop() != undefined
   }

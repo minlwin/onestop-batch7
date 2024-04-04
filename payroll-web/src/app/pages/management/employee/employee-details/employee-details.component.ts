@@ -7,6 +7,8 @@ import { EmployeeHistoryComponent } from './employee-history/employee-history.co
 import { RouterLink } from '@angular/router';
 import { ChangePositionComponent } from './change-position/change-position.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
+import { AbstractComponent } from '../../../../model/abstract.component';
+import { MenusService } from '../../../../services/menus.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -22,7 +24,7 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
   templateUrl: './employee-details.component.html',
   styles: ``
 })
-export class EmployeeDetailsComponent {
+export class EmployeeDetailsComponent extends AbstractComponent{
 
   code = input.required<string>()
   history = signal<any[]>([])
@@ -37,7 +39,11 @@ export class EmployeeDetailsComponent {
   @ViewChild(ChangeStatusComponent)
   statusChangeDialog!:ChangeStatusComponent
 
-  constructor(private service:EmployeeService) {
+  override resource: string = "employee";
+
+  constructor(private service:EmployeeService, menuService:MenusService) {
+
+    super(menuService)
 
     effect(() => {
       this.relaod()
